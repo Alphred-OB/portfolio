@@ -1,0 +1,12 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Alfred Boakye Portfolio",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i assets/css/input.css -o assets/css/style.css --minify"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.1",
+    "tailwindcss": "^4.3.1"
+  }
+}

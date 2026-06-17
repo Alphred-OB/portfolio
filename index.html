@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Alfred Boakye portfolio">
+<title>Alfred Boakye - Developer and Co-Founder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.cdnfonts.com/css/product-sans">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/lenis.min.js"></script>
+<link rel="stylesheet" href="assets/css/lenis.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+<main>
+<section class="hero" id="home">
+  <canvas class="noise" id="noise" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  
+  <nav class="top-nav" aria-label="Primary navigation">
+    <a class="logo" href="#home" aria-label="Alfred Boakye home">AB</a>
+    <div class="nav-links" role="list">
+      <a class="active" href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+      <span>Theme</span>
+      <i class="fa-solid fa-sun"></i>
+    </button>
+  </nav>
+
+  <aside class="socials" aria-label="Social links">
+    <a href="mailto:alfredwalker180@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://wa.me/233535594525" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="tel:+233535594525" aria-label="Call Alfred"><i class="fa-solid fa-phone"></i></a>
+  </aside>
+
+  <div class="side-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="side-line"></div>
+  </div>
+
+  <div class="stage">
+    <div class="name-area left">
+      <h1 class="name left-name">Alfred</h1>
+      <div class="left-panel content-panel">
+        <h2 class="kicker">Developer<br>&amp; Co-Founder</h2>
+        <div class="rule"></div>
+        <p>I engineer high-performance digital systems that secure customer data, streamline business operations, and scale with your growth.</p>
+        <a class="work-btn" href="#projects">Explore Outcomes <i class="fa-solid fa-arrow-right-long"></i></a>
+      </div>
+    </div>
+    <div class="centerpiece" aria-label="Portrait composition">
+      <div class="hero-ring" aria-hidden="true">
+        <svg viewBox="0 0 320 320">
+          <circle cx="160" cy="160" r="140"></circle>
+        </svg>
+      </div>
+      <div class="portrait">
+        <div class="portrait-mask">
+          <img src="me.png" alt="Portrait of Alfred Boakye">
+        </div>
+      </div>
+    </div>
+    <div class="name-area right">
+      <h1 class="name right-name">Boakye</h1>
+      <div class="stats content-panel" aria-label="Stats">
+        <div class="stat">
+          <strong>11+</strong>
+          <span>Projects Shipped</span>
+        </div>
+        <div class="stat">
+          <strong>2024</strong>
+          <span>Co-Founded Erudite</span>
+        </div>
+        <div class="stat">
+          <strong>4+ Yrs</strong>
+          <span>Dev Experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="center-scroll" href="#about" aria-label="Scroll to explore">
+    <span>Scroll to Explore</span>
+    <div class="mouse" aria-hidden="true"></div>
+  </a>
+</section>
+
+<section class="next-section" id="about">
+  <div class="num">01</div>
+  <div>
+    <p class="uppercase tracking-[0.22em] text-xs font-black mb-6 text-[color:var(--text-3)]">Our Partnership</p>
+    <h2>Upgrading your<br>business.</h2>
+  </div>
+  <p>I work directly with business owners and startup founders to transform slow, insecure web platforms into fast, reliable systems that capture more customers, prevent data loss, and scale effortlessly as operations expand.</p>
+  <span class="keep">Keep Scrolling</span>
+</section>
+
+<!-- Section 02: Business Upgrades & Outcomes -->
+<section class="next-section" id="outcomes-upgrade">
+  <div class="num">02</div>
+  <div>
+    <p class="uppercase tracking-[0.22em] text-xs font-black mb-6 text-[color:var(--text-3)]">Proven Metrics</p>
+    <h2>Business Upgrades.</h2>
+  </div>
+  <p>Replacing legacy codebases with fast, secure setups translates directly into business growth: loading speed speeds up customer conversion rates, hardened servers prevent costly security recovery steps, and modern UI upgrades immediately build buyer trust.</p>
+  <span class="keep">Keep Scrolling</span>
+</section>
+
+<!-- Section 03: Operational Quality Standards -->
+<section class="next-section" id="standards-upgrade">
+  <div class="num">03</div>
+  <div>
+    <p class="uppercase tracking-[0.22em] text-xs font-black mb-6 text-[color:var(--text-3)]">Operational Standards</p>
+    <h2>Zero Downtime.</h2>
+  </div>
+  <p>Every platform is built to sustain massive traffic without lagging, leveraging horizontal scaling structures, query caching steps, automated testing scripts, and secure release channels so your systems stay online 100% of the time.</p>
+  <span class="keep">Keep Scrolling</span>
+</section>
+
+<section class="portfolio-section" id="work">
+  <div class="section-shell reveal-section">
+    <p class="section-eyebrow">Development Principles</p>
+    <h2 class="section-title mb-16">High Standards.<br>Disciplined Process.<br>Business Growth.</h2>
+    
+    <div class="bento-grid">
+      <!-- 01. Planning & Design -->
+      <div class="bento-cell bento-large">
+        <div class="bento-orb"></div>
+        <span class="project-index">01 / Concept</span>
+        <h3 style="font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; margin: 16px 0 8px;">Planning &amp; Business Alignment</h3>
+        <p style="color: var(--text-2); font-size: 0.94rem; line-height: 1.6;">Before writing code, we map database models and user journeys directly to your business goals. Getting the architecture right upfront prevents future development bottlenecks, lowering your engineering costs.</p>
+      </div>
+
+      <!-- 02. Clean Coding -->
+      <div class="bento-cell bento-small">
+        <span class="project-index">02 / Execution</span>
+        <h3 style="font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin: 16px 0 8px;">Maintainable Codebases</h3>
+        <p style="color: var(--text-2); font-size: 0.9rem; line-height: 1.6;">Writing clean, modular code prevents technical debt. This ensures your system is easy to support, update, and hand over, keeping your future operational costs low.</p>
+      </div>
+
+      <!-- 03. UI/UX & Responsiveness -->
+      <div class="bento-cell bento-small">
+        <span class="project-index">03 / Interface</span>
+        <h3 style="font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin: 16px 0 8px;">Conversion-Focused Design</h3>
+        <p style="color: var(--text-2); font-size: 0.9rem; line-height: 1.6;">Fluid layouts load instantly and adapt to mobile devices flawlessly. Elegant interfaces build consumer trust and directly boost your customer conversion rates.</p>
+      </div>
+
+      <!-- 04. Security & Performance -->
+      <div class="bento-cell bento-wide">
+        <div class="bento-orb"></div>
+        <span class="project-index">04 / Risk &amp; Speed</span>
+        <h3 style="font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; margin: 16px 0 8px;">Revenue &amp; Data Protection</h3>
+        <p style="color: var(--text-2); font-size: 0.94rem; line-height: 1.6;">Slow websites lose customers, and data breaches ruin reputation. I optimize systems to run lightning-fast while enforcing strict security controls to protect your transaction flows and customer databases.</p>
+      </div>
+
+      <!-- 05. Scalability -->
+      <div class="bento-cell bento-small">
+        <span class="project-index">05 / Infrastructure</span>
+        <h3 style="font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin: 16px 0 8px;">Scale-Ready Infrastructure</h3>
+        <p style="color: var(--text-2); font-size: 0.9rem; line-height: 1.6;">Designing platforms that support heavy web traffic surges without crashing, keeping your storefront online and operational when it matters most.</p>
+      </div>
+
+      <!-- 06. CI/CD & Deployment -->
+      <div class="bento-cell bento-small">
+        <span class="project-index">06 / Integration</span>
+        <h3 style="font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin: 16px 0 8px;">Zero-Downtime Deployment</h3>
+        <p style="color: var(--text-2); font-size: 0.9rem; line-height: 1.6;">Automated pipelines push live updates instantly. This guarantees you roll out new business features without interrupting active customer sessions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio-section" id="projects">
+  <div class="section-shell reveal-section">
+    <p class="section-eyebrow">Case Studies</p>
+    <h2 class="section-title">Selected projects built for impact.</h2>
+    <div class="projects-list">
+      
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/CEANA-REDESIGNED_WEBSITE.webp" alt="CEANA Website Redesign" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">01 / Web Platform</span>
+          <h3>CEANA Website Redesign</h3>
+          <p>I redesigned an old, outdated website with a clean, modern, and engaging user interface.</p>
+          <div class="project-tags">
+            <span>Redesign</span>
+            <span>UI/UX</span>
+            <span>Web Dev</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/HOMELAB.jpg" alt="Security Homelab Setup" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">02 / Cyber Security</span>
+          <h3>Security Pentesting Lab</h3>
+          <p>I built my own homelab, hosted a website and media streaming service on it, monitored system health, and performed security checks including simulated denial-of-service and SSH brute-force defense on an Ubuntu server.</p>
+          <div class="project-tags">
+            <span>Security</span>
+            <span>Server Admin</span>
+            <span>Testing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/EruditeAcademy.webp" alt="Erudite Academy Portal" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">03 / School System</span>
+          <h3>Erudite Academy Portal</h3>
+          <p>I built an online training and learning platform where learners acquire new skills and earn certificates. Despite a large user base, I scaled the platform to ensure high performance with no lag.</p>
+          <div class="project-tags">
+            <span>Education</span>
+            <span>Scaling</span>
+            <span>Performance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/SKILLS BRIDGE FOUNDATION.webp" alt="Skills Bridge Hub" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">04 / NGO Web Portal</span>
+          <h3>Skills Bridge Hub</h3>
+          <p>I built a fully responsive, secure, and high-performance website for Skills Bridge.</p>
+          <div class="project-tags">
+            <span>NGO</span>
+            <span>Responsive</span>
+            <span>Security</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/POS_SYSTEM.webp" alt="POS System Interface" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">05 / Business Utility</span>
+          <h3>POS &amp; Inventory Engine</h3>
+          <p>I built a point-of-sale system for businesses to manage their inventory and sales transactions.</p>
+          <div class="project-tags">
+            <span>Business Utility</span>
+            <span>Architecture</span>
+            <span>Management</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/TECHHUB_EMPLOYEE_PORTAL.webp" alt="TechHub Employee Portal" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">06 / Internal Tool</span>
+          <h3>TechHub Employee Portal</h3>
+          <p>I had the opportunity to build the employee system for TechHub, one of the largest companies in Ghana.</p>
+          <div class="project-tags">
+            <span>Internal Tool</span>
+            <span>Employee System</span>
+            <span>Workflow</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/EWAGA.webp" alt="EWAGA Portal" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">07 / Web Portal</span>
+          <h3>EWAGA Hub</h3>
+          <p>I designed and deployed the official web portal for the Ewe Association of Georgia, Inc., implementing membership management, events coordination, and diaspora community support interfaces.</p>
+          <div class="project-tags">
+            <span>Community Portal</span>
+            <span>Events</span>
+            <span>Diaspora</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/GESA.webp" alt="GESA Platform" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">08 / Association Portal</span>
+          <h3>GESA Student Platform</h3>
+          <p>I built the official Geomatic Engineering Students Association (GESA) student portal at UMaT, facilitating student logins and secure access to academic resources.</p>
+          <div class="project-tags">
+            <span>Student Portal</span>
+            <span>Association</span>
+            <span>Academic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/GHASS-G.webp" alt="GHASS-G Database" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">09 / Resource Site</span>
+          <h3>GHASS-G Administrative Portal</h3>
+          <p>I developed the primary web platform for the Global Health and Safety Group, establishing training course catalog directories and professional certification portals.</p>
+          <div class="project-tags">
+            <span>Professional Training</span>
+            <span>Certification</span>
+            <span>Resource Hub</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/GHSIC.webp" alt="GHSIC secure gateway" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">10 / Secure Resource Gateway</span>
+          <h3>GHSIC Secured Portal</h3>
+          <p>I engineered the secure digital portal for the Ghana Students Internship Council, connecting students with premier internship placements and career training resources.</p>
+          <div class="project-tags">
+            <span>Career Platform</span>
+            <span>Internship Hub</span>
+            <span>Student Network</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <img src="Projects/hopsausa-canada.webp" alt="HOPSA Alumni Website" class="project-image">
+        </div>
+        <div class="project-card-content">
+          <span class="project-index">11 / Alumni Network</span>
+          <h3>HOPSA USA-Canada Website</h3>
+          <p>I designed the secure management portal for the Holy Child Past Students Association (HOPSA) USA-Canada branch, supporting alumni communication and member networking.</p>
+          <div class="project-tags">
+            <span>Alumni Network</span>
+            <span>Secure Dashboard</span>
+            <span>Member Portal</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="portfolio-section" id="timeline">
+  <div class="section-shell reveal-section">
+    <p class="section-eyebrow">Academic &amp; Career History</p>
+    <h2 class="section-title">My Professional Timeline</h2>
+    
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      <div class="timeline-line-progress" id="timelineProgress"></div>
+      
+      <!-- Milestone 1: Co-Founder -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2024 - Present</div>
+          <h3 class="timeline-title">Erudite Africa Network</h3>
+          <p class="timeline-subtitle">Co-Founder &amp; Technical Director</p>
+          <p style="color: var(--text-2); font-size: 0.94rem; line-height: 1.6;">Co-founded and scaled an online training and learning platform, ensuring high performance, security, and uptime under high user traffic. Driven by the mission of providing accessible skills training and certification programs across Africa.</p>
+        </div>
+      </div>
+
+      <!-- Milestone 2: Cyber Security Studies & Freelancing -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2024 - Present</div>
+          <h3 class="timeline-title">Cyber Security Studies &amp; Freelancing</h3>
+          <p class="timeline-subtitle">University Student / Software Engineer</p>
+          <p style="color: var(--text-2); font-size: 0.94rem; line-height: 1.6;">Deepening technical expertise across custom application development, backend system engineering, database management, security vulnerability auditing, infrastructure automation, and secure hosting environments.</p>
+        </div>
+      </div>
+      
+      <!-- Milestone 3: OSHTS Education -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">2020 - 2023</div>
+          <h3 class="timeline-title">IT Science Education (OSHTS)</h3>
+          <p class="timeline-subtitle">Obuasi Senior High Technical School</p>
+          <p style="color: var(--text-2); font-size: 0.94rem; line-height: 1.6;">Studied foundation computer sciences and information architectures. Mastered system logical planning, database design, and responsive web platform architectures, culminating in delivering the official web portal for the institution.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio-section" id="skills">
+  <div class="section-shell reveal-section">
+    <p class="section-eyebrow">Strategy &amp; Capabilities</p>
+    <h2 class="section-title mb-16">Core Competence</h2>
+    
+    <div class="approach-grid">
+      <div class="approach-step">
+        <span>01</span>
+        <h3>Assess</h3>
+        <p>Audit existing business systems, mapping out current performance bottlenecks and vulnerabilities.</p>
+      </div>
+      <div class="approach-step">
+        <span>02</span>
+        <h3>Architect</h3>
+        <p>Design a modular, highly secure system framework aligned with your scale goals.</p>
+      </div>
+      <div class="approach-step">
+        <span>03</span>
+        <h3>Implement</h3>
+        <p>Build the core platform with reliable software patterns, custom workflows, and clean design elements.</p>
+      </div>
+      <div class="approach-step">
+        <span>04</span>
+        <h3>Harden &amp; Release</h3>
+        <p>Run simulated system stresses, speed audits, and deploy the application through automated release pipelines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div class="section-shell reveal-section">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Common Queries</h2>
+    
+    <div class="faq-container">
+      <!-- FAQ 1 -->
+      <div class="faq-item">
+        <button class="faq-trigger" type="button" aria-expanded="false">
+          <span>My current website is slow and outdated. Why should I upgrade?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            A slow website turns potential customers away and hurts your sales. By upgrading to a fast, modern platform, your pages load instantly, look highly professional, and keep clients engaged, which directly boosts your business growth.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item">
+        <button class="faq-trigger" type="button" aria-expanded="false">
+          <span>How do I know my customer information and payments are actually safe?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            I review your forms, checkout pages, and data setup to block unauthorized entry. By building with secure design practices, I lock down your customer logins and transactions so they remain fully protected from online threats.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item">
+        <button class="faq-trigger" type="button" aria-expanded="false">
+          <span>Will my website crash if too many people visit it at once?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Not with the setups I build. I structure websites to handle large surges of traffic. This means even during active sales promotions or peak customer hours, your storefront stays online, fast, and accessible without hiccups.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item">
+        <button class="faq-trigger" type="button" aria-expanded="false">
+          <span>What is the process, and will it disrupt my current site?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            First, we discuss your goals and lay out the new design. I then build and test everything in a private setup. Once it is fully ready, I launch the new version smoothly so there is zero interruption to your active customer operations.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio-section contact-section" id="contact">
+  <div class="section-shell reveal-section">
+    <div class="contact-layout">
+      <div>
+        <p class="section-eyebrow">Contact</p>
+        <h2 class="contact-title">Let’s secure and build.</h2>
+        <p style="color: var(--text-2); max-width: 420px; font-size: 0.94rem; line-height: 1.6; margin-bottom: 24px;">If you have a project that needs secure engineering, database design, or frontend optimization, skip the forms and reach out directly.</p>
+        
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="contact-info-text">
+              <strong>Location</strong>
+              Ghana / Remote
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="glass-card" style="padding: clamp(24px, 4vw, 48px); display: flex; flex-direction: column; gap: 24px;">
+        <h3 style="font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px;">Direct Channels</h3>
+        
+        <!-- Email Link -->
+        <a href="mailto:alfredwalker180@gmail.com" class="bento-cell" style="display: flex; align-items: center; gap: 20px; padding: 20px; text-decoration: none; border-radius: 12px; transition: border-color 0.3s ease;">
+          <div class="contact-info-icon" style="flex-shrink: 0; background: var(--bg-3);"><i class="fa-solid fa-envelope" style="color: var(--accent);"></i></div>
+          <div style="flex-grow: 1;">
+            <strong style="display: block; font-size: 0.92rem; color: var(--text); margin-bottom: 2px;">Email</strong>
+            <span style="font-size: 0.88rem; color: var(--text-2); word-break: break-all;">alfredwalker180@gmail.com</span>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-3); font-size: 0.85rem;"></i>
+        </a>
+
+        <!-- WhatsApp Link -->
+        <a href="https://wa.me/233535594525" target="_blank" rel="noopener noreferrer" class="bento-cell" style="display: flex; align-items: center; gap: 20px; padding: 20px; text-decoration: none; border-radius: 12px; transition: border-color 0.3s ease;">
+          <div class="contact-info-icon" style="flex-shrink: 0; background: var(--bg-3);"><i class="fa-brands fa-whatsapp" style="color: var(--accent);"></i></div>
+          <div style="flex-grow: 1;">
+            <strong style="display: block; font-size: 0.92rem; color: var(--text); margin-bottom: 2px;">WhatsApp</strong>
+            <span style="font-size: 0.88rem; color: var(--text-2);">Message Alfred directly</span>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-3); font-size: 0.85rem;"></i>
+        </a>
+
+        <!-- Phone Call Link -->
+        <a href="tel:+233535594525" class="bento-cell" style="display: flex; align-items: center; gap: 20px; padding: 20px; text-decoration: none; border-radius: 12px; transition: border-color 0.3s ease;">
+          <div class="contact-info-icon" style="flex-shrink: 0; background: var(--bg-3);"><i class="fa-solid fa-phone" style="color: var(--accent);"></i></div>
+          <div style="flex-grow: 1;">
+            <strong style="display: block; font-size: 0.92rem; color: var(--text); margin-bottom: 2px;">Phone</strong>
+            <span style="font-size: 0.88rem; color: var(--text-2);">0535594525</span>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-3); font-size: 0.85rem;"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="toast-container" style="position: fixed; bottom: 32px; right: 32px; z-index: 150; display: flex; flex-direction: column; gap: 12px; pointer-events: none;"></div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

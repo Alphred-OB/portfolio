@@ -1,0 +1,12 @@
+- [x] Define the design token system, color palettes, and typography imports.
+- [x] Upgrade the navigation bar to a floating glassmorphism pill.
+- [x] Rebuild the Hero section with glowing orbs, letter-split animations, and parallax.
+- [x] Convert the focus area into an asymmetric Bento Grid.
+- [x] Upgrade projects to alternating 2-column freestanding layout.
+- [x] Integrate Lenis smooth scrolling synchronized with GSAP.
+- [x] Implement conversational FAQ accordion (jargon-free).
+- [x] Move direct contact lines to bento layout (Email, WhatsApp, Phone).
+- [x] Setup Tailwind CSS v4 compiler locally in project environment.
+- [x] Relocate custom Javascript to dedicated file `assets/js/main.js`.
+- [x] Transition all external assets (GSAP, ScrollTrigger, Lenis) to local folders.
+- [x] Compile final production template and output page.
