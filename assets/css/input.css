@@ -372,11 +372,11 @@ html[data-theme="light"] .nav-links a.active {
   width: min(100%, 1480px);
   min-height: 100vh;
   margin: 0 auto;
-  padding: 120px clamp(48px, 5vw, 96px) 48px;
+  padding: 120px clamp(24px, 4vw, 96px) 48px;
   display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(430px, 1.3fr) minmax(300px, 1fr);
+  grid-template-columns: 1fr 1.2fr 1fr;
   align-items: center;
-  column-gap: clamp(24px, 3vw, 54px);
+  column-gap: clamp(16px, 2.5vw, 54px);
 }
 
 .name-area {
@@ -474,8 +474,9 @@ html[data-theme="light"] .work-btn:hover {
   position: relative;
   justify-self: center;
   align-self: end;
-  width: min(100%, 720px);
-  min-width: 430px;
+  width: 100%;
+  max-width: 720px;
+  min-width: 0;
   height: min(78vh, 820px);
   z-index: 25;
   pointer-events: none;
@@ -1327,16 +1328,17 @@ html[data-theme="light"] .form-submit-btn:hover {
     padding: 8px 12px 8px 18px;
   }
   .stage {
-    grid-template-columns: minmax(190px, 0.9fr) minmax(335px, 1.18fr) minmax(190px, 0.9fr);
-    padding: 110px 32px 48px;
-    column-gap: 10px;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    padding: 110px 24px 48px;
+    column-gap: 16px;
   }
   .name {
     font-size: clamp(4rem, 7.5vw, 6.8rem);
   }
   .centerpiece {
-    min-width: 335px;
-    width: min(100%, 520px);
+    min-width: 0;
+    width: 100%;
+    max-width: 520px;
   }
   .left-panel {
     width: 220px;
@@ -1392,8 +1394,9 @@ html[data-theme="light"] .form-submit-btn:hover {
   }
   .centerpiece {
     grid-row: 1;
-    min-width: 290px;
-    width: min(100%, 420px);
+    min-width: 0;
+    width: 100%;
+    max-width: 420px;
     height: auto;
     aspect-ratio: 0.85;
     align-self: center;
