@@ -482,26 +482,15 @@ html[data-theme="light"] .work-btn:hover {
   pointer-events: none;
 }
 
-.portrait {
-  position: absolute;
-  left: 50%;
-  bottom: -7px;
-  z-index: 40;
-  width: 100%;
-  min-width: 0;
-  transform: translate3d(-50%, 0, 0);
-  will-change: transform;
-}
-
 .hero-glow {
   position: absolute;
   left: 50%;
-  top: 36.5%;
-  z-index: 5;
-  width: 78%;
+  top: 45%;
+  z-index: 10;
+  width: 86%;
   aspect-ratio: 1;
-  background: radial-gradient(circle, var(--accent) 0%, transparent 65%);
-  opacity: 0.22;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 68%);
+  opacity: 0.2;
   filter: blur(42px);
   transform: translate3d(-50%, -50%, 0);
   pointer-events: none;
@@ -511,7 +500,7 @@ html[data-theme="light"] .work-btn:hover {
 @keyframes auraPulse {
   0%, 100% {
     transform: translate3d(-50%, -50%, 0) scale(1);
-    opacity: 0.22;
+    opacity: 0.2;
   }
   50% {
     transform: translate3d(-50%, -50%, 0) scale(1.05);
@@ -522,15 +511,14 @@ html[data-theme="light"] .work-btn:hover {
 .hero-ring {
   position: absolute;
   left: 50%;
-  top: 36.5%;
-  z-index: 10;
-  width: 74%;
+  top: 45%;
+  z-index: 18;
+  width: 86%;
   aspect-ratio: 1;
   color: var(--accent);
-  filter: drop-shadow(0 0 28px var(--glow)) drop-shadow(0 0 8px rgba(255,255,255,0.3));
+  filter: drop-shadow(0 0 28px var(--glow)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
-  pointer-events: none;
 }
 
 .hero-ring svg {
@@ -554,6 +542,17 @@ html[data-theme="light"] .work-btn:hover {
   stroke-linecap: round;
   stroke-dasharray: 879.65;
   stroke-dashoffset: 879.65;
+}
+
+.portrait {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(70px, 12.5vh, 125px); /* Shifts portrait UP so head is centered inside high circle */
+  z-index: 40;
+  width: 100%;
+  min-width: 0;
+  transform: translate3d(-50%, 0, 0);
+  will-change: transform;
 }
 
 .portrait-mask {
