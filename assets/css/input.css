@@ -482,32 +482,55 @@ html[data-theme="light"] .work-btn:hover {
   pointer-events: none;
 }
 
-.centerpiece::before {
-  content: '';
+.portrait {
   position: absolute;
-  top: 45%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 75%;
-  height: 75%;
-  background: radial-gradient(circle, var(--accent) 0%, transparent 68%);
-  opacity: 0.16;
-  filter: blur(40px);
-  z-index: 10;
+  bottom: -7px;
+  z-index: 40;
+  width: 100%;
+  min-width: 0;
+  transform: translate3d(-50%, 0, 0);
+  will-change: transform;
+}
+
+.hero-glow {
+  position: absolute;
+  left: 50%;
+  top: 36.5%;
+  z-index: 5;
+  width: 78%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 65%);
+  opacity: 0.22;
+  filter: blur(42px);
+  transform: translate3d(-50%, -50%, 0);
   pointer-events: none;
+  animation: auraPulse 4s ease-in-out infinite;
+}
+
+@keyframes auraPulse {
+  0%, 100% {
+    transform: translate3d(-50%, -50%, 0) scale(1);
+    opacity: 0.22;
+  }
+  50% {
+    transform: translate3d(-50%, -50%, 0) scale(1.05);
+    opacity: 0.35;
+  }
 }
 
 .hero-ring {
   position: absolute;
   left: 50%;
-  top: 45%;
-  z-index: 18;
-  width: 86%;
+  top: 36.5%;
+  z-index: 10;
+  width: 74%;
   aspect-ratio: 1;
   color: var(--accent);
-  filter: drop-shadow(0 0 28px var(--glow));
+  filter: drop-shadow(0 0 28px var(--glow)) drop-shadow(0 0 8px rgba(255,255,255,0.3));
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
+  pointer-events: none;
 }
 
 .hero-ring svg {
@@ -533,19 +556,9 @@ html[data-theme="light"] .work-btn:hover {
   stroke-dashoffset: 879.65;
 }
 
-.portrait {
-  position: absolute;
-  left: 50%;
-  bottom: -7px;
-  z-index: 40;
-  width: 100%;
-  min-width: 0;
-  transform: translate3d(-50%, 0, 0);
-  will-change: transform;
-}
-
 .portrait-mask {
   position: relative;
+  z-index: 20;
 }
 
 .portrait img {

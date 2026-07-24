@@ -437,14 +437,70 @@ function pointerDepth() {
     raf = true;
     requestAnimationFrame(() => {
       raf = false;
-      gsap.to('.portrait', {x: mx * 6, y: my * 4, duration: 0.8, ease: 'power2.out', overwrite: 'auto'});
-      gsap.to('.hero-ring', {x: -mx * 4, y: -my * 4, duration: 1.0, ease: 'power2.out', overwrite: 'auto'});
-      gsap.to('.left-name, .right-name', {x: mx * 2, y: my * 1.5, duration: 1.0, ease: 'power2.out', overwrite: 'auto'});
+      gsap.to('.portrait', {x: mx * 8, y: my * 5, duration: 0.8, ease: 'power2.out', overwrite: 'auto'});
+      gsap.to('.hero-ring', {x: -mx * 3, y: -my * 2, duration: 1.0, ease: 'power2.out', overwrite: 'auto'});
+      gsap.to('.left-name, .right-name', {x: mx * 4, y: my * 2, duration: 1.0, ease: 'power2.out', overwrite: 'auto'});
     });
   });
 
   hero.addEventListener('mouseleave', () => {
     gsap.to('.portrait, .hero-ring, .left-name, .right-name', {x: 0, y: 0, duration: 1.0, ease: 'power3.out', overwrite: 'auto'});
+  });
+}
+
+function initCounters() {
+  const counters = document.querySelectorAll('.counter-num');
+  counters.forEach(counter => {
+    const target = parseFloat(counter.getAttribute('data-target'));
+    const suffix = counter.getAttribute('data-suffix') || '';
+    const isYear = target > 1000;
+    const startVal = isYear ? target - 20 : 0;
+    const obj = { val: startVal };
+
+    gsap.to(obj, {
+      val: target,
+      duration: 2.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: counter,
+        start: 'top 92%',
+        toggleActions: 'play none none reverse'
+      },
+      onUpdate: () => {
+        counter.textContent = Math.floor(obj.val) + suffix;
+      }
+    });
+  });
+}
+
+function initMagneticButtons() {
+  if (reduced) return;
+  const elements = document.querySelectorAll('.work-btn, .theme-toggle, .socials a, .logo');
+  elements.forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(el, { x: x * 0.25, y: y * 0.25, duration: 0.3, ease: 'power2.out' });
+    });
+    el.addEventListener('mouseleave', () => {
+      gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+    });
+  });
+}
+
+function initProjectHover() {
+  if (reduced) return;
+  const projectItems = document.querySelectorAll('.project-item');
+  projectItems.forEach(item => {
+    const img = item.querySelector('.project-image');
+    if (!img) return;
+    item.addEventListener('mouseenter', () => {
+      gsap.to(img, { scale: 1.06, duration: 0.6, ease: 'power2.out' });
+    });
+    item.addEventListener('mouseleave', () => {
+      gsap.to(img, { scale: 1, duration: 0.6, ease: 'power2.out' });
+    });
   });
 }
 
@@ -511,5 +567,17 @@ window.addEventListener('load', () => {
 
   try {
     initFAQ();
+  } catch (e) { console.error(e); }
+
+  try {
+    initCounters();
+  } catch (e) { console.error(e); }
+
+  try {
+    initMagneticButtons();
+  } catch (e) { console.error(e); }
+
+  try {
+    initProjectHover();
   } catch (e) { console.error(e); }
 });
