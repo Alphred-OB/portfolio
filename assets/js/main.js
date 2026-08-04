@@ -3,7 +3,7 @@ gsap.registerPlugin(ScrollTrigger);
 const root = document.documentElement;
 const toggle = document.getElementById('themeToggle');
 const canvas = document.getElementById('noise');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Navigation highlighting active section on scroll
@@ -14,7 +14,6 @@ window.addEventListener('scroll', () => {
   let current = "";
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
     if (pageYOffset >= (sectionTop - 200)) {
       current = section.getAttribute('id');
     }
@@ -29,6 +28,7 @@ window.addEventListener('scroll', () => {
 });
 
 function drawNoise() {
+  if (!canvas || !ctx) return;
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   const w = Math.floor(window.innerWidth * dpr);
   const h = Math.floor(window.innerHeight * dpr);
@@ -48,13 +48,18 @@ function drawNoise() {
   ctx.putImageData(image, 0, 0);
 }
 
-toggle.addEventListener('click', () => {
-  const dark = root.dataset.theme === 'dark';
-  root.dataset.theme = dark ? 'light' : 'dark';
-  toggle.setAttribute('aria-pressed', String(dark));
-  toggle.querySelector('i').className = dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-  gsap.fromTo(toggle, {scale: 0.95}, {scale: 1, duration: 0.2, ease: 'power2.out'});
-});
+if (toggle) {
+  toggle.addEventListener('click', () => {
+    const dark = root.dataset.theme === 'dark';
+    root.dataset.theme = dark ? 'light' : 'dark';
+    toggle.setAttribute('aria-pressed', String(dark));
+    const icon = toggle.querySelector('i');
+    if (icon) {
+      icon.className = dark ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+    }
+    gsap.fromTo(toggle, {scale: 0.95}, {scale: 1, duration: 0.2, ease: 'power2.out'});
+  });
+}
 
 // Helper to split text into characters dynamically for character slide-up reveal
 function splitTextIntoSpans(selector) {
@@ -180,16 +185,13 @@ function intro() {
 
   if (reduced) {
     gsap.set('.portrait-mask', {opacity: 1});
-    gsap.set('.hero-ring circle', {strokeDashoffset: 0});
     gsap.set('.char-span', {y: '0%'});
     return;
   }
-  
+
   gsap.set('.hero', {opacity: 0});
   gsap.set('.top-nav', {y: -70, opacity: 0});
-  gsap.set('.socials, .side-scroll', {x: -28, opacity: 0});
-  gsap.set('.hero-ring', {opacity: 0});
-  gsap.set('.hero-ring circle', {strokeDashoffset: 879.65});
+  gsap.set('.socials', {x: -28, opacity: 0});
   gsap.set('.portrait-mask', {y: 40, opacity: 0});
   gsap.set('.content-panel', {y: 20, opacity: 0});
   gsap.set('.center-scroll', {y: 15, opacity: 0});
@@ -197,19 +199,12 @@ function intro() {
   gsap.timeline({defaults: {ease: 'power3.out'}})
     .to('.hero', {opacity: 1, duration: 0.95})
     .to('.top-nav', {y: 0, opacity: 1, duration: 0.85}, '-=0.45')
-    .to('.socials, .side-scroll', {x: 0, opacity: 1, duration: 0.75, stagger: 0.08}, '-=0.45')
+    .to('.socials', {x: 0, opacity: 1, duration: 0.75}, '-=0.45')
     .to('.left-name .char-span', {y: '0%', duration: 1.1, stagger: 0.05, ease: 'power4.out'}, '-=0.35')
     .to('.right-name .char-span', {y: '0%', duration: 1.1, stagger: 0.05, ease: 'power4.out'}, '-=1.0')
-    .to('.hero-ring', {opacity: 1, duration: 0.5, ease: 'power2.out'}, '-=0.7')
-    .to('.hero-ring circle', {strokeDashoffset: 0, duration: 1.4, ease: 'power3.inOut'}, '<')
     .to('.portrait-mask', {y: 0, opacity: 1, duration: 1.1, ease: 'power4.out'}, '-=0.85')
     .to('.content-panel', {y: 0, opacity: 1, duration: 0.75, stagger: 0.12}, '-=0.3')
-    .to('.center-scroll', {y: 0, opacity: 1, duration: 0.65}, '-=0.35')
-    .add(idle);
-}
-
-function idle() {
-  gsap.to('.hero-ring', {scale: 1.015, duration: 4.5, ease: 'sine.inOut', yoyo: true, repeat: -1});
+    .to('.center-scroll', {y: 0, opacity: 1, duration: 0.65}, '-=0.35');
 }
 
 function scrollMotion() {
@@ -218,32 +213,138 @@ function scrollMotion() {
   const heroOpts = {
     trigger: '.hero',
     start: 'top top',
-    end: '+=500',
-    scrub: 1.2
+    end: 'bottom 20%',
+    scrub: 0.8
   };
-  
-  ScrollTrigger.create({
-    trigger: '.hero',
-    start: 'top top',
-    end: '+=320',
-    pin: true,
-    pinSpacing: true
-  });
 
-  gsap.to('.left-name', {xPercent: -15, ease: 'none', scrollTrigger: heroOpts});
-  gsap.to('.right-name', {xPercent: 15, ease: 'none', scrollTrigger: heroOpts});
-  gsap.to('.left-panel', {x: -30, opacity: 0, ease: 'none', scrollTrigger: heroOpts});
-  gsap.to('.stats', {x: 30, opacity: 0, ease: 'none', scrollTrigger: heroOpts});
-  gsap.to('.portrait', {y: -40, scale: 1.04, ease: 'none', scrollTrigger: heroOpts});
-  gsap.to('.hero-ring', {scale: 0.9, opacity: 0.4, ease: 'none', scrollTrigger: heroOpts});
-  gsap.to('.socials, .side-scroll', {opacity: 0, ease: 'none', scrollTrigger: {
+  // Smooth Hero Scroll Scrubbing
+  gsap.to('.left-name', {xPercent: -35, opacity: 0, ease: 'power1.inOut', scrollTrigger: heroOpts});
+  gsap.to('.right-name', {xPercent: 35, opacity: 0, ease: 'power1.inOut', scrollTrigger: heroOpts});
+  gsap.to('.left-panel', {x: -80, opacity: 0, ease: 'power1.inOut', scrollTrigger: heroOpts});
+  gsap.to('.stats', {x: 80, opacity: 0, ease: 'power1.inOut', scrollTrigger: heroOpts});
+  gsap.to('.portrait', {yPercent: -15, scale: 1.15, opacity: 0.15, ease: 'power1.inOut', scrollTrigger: heroOpts});
+  gsap.to('.hero-glow', {scale: 2.0, opacity: 0.05, ease: 'power1.inOut', scrollTrigger: heroOpts});
+  gsap.to('.socials, .center-scroll, .hero-chip', {opacity: 0, y: 20, ease: 'none', scrollTrigger: {
     trigger: '.hero',
     start: 'top top',
-    end: '+=150',
-    scrub: 1
+    end: '30% top',
+    scrub: 0.8
   }});
 
-  // Advanced Entry and Exit Scroll Reveals for sections
+  // Section titles 3D perspective reveal on scroll
+  gsap.utils.toArray('.section-title').forEach(title => {
+    gsap.fromTo(title,
+      { opacity: 0, y: 55, rotateX: 25, transformPerspective: 1000 },
+      {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 1.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 88%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
+  });
+
+  // Cinematic pinned scroll-story for the numbered intro panels (01/02/03).
+  // Desktop: each panel pins full-screen and its reveal is scrubbed 1:1 to scroll,
+  // so it genuinely "plays" as the user scrolls rather than firing once on view.
+  // Mobile: falls back to a lightweight non-pinned reveal (pinning + touch scroll fight each other).
+  const introMM = gsap.matchMedia();
+
+  introMM.add('(min-width: 821px)', () => {
+    gsap.utils.toArray('.next-section').forEach(sec => {
+      const num = sec.querySelector('.num');
+      const wrap = sec.querySelector(':scope > div:not(.num)');
+      const eyebrow = wrap ? wrap.querySelector('p') : null;
+      const h2 = wrap ? wrap.querySelector('h2') : null;
+      const p = sec.querySelector(':scope > p');
+      const keep = sec.querySelector('.keep');
+      const revealTargets = [num, eyebrow, h2, p, keep].filter(Boolean);
+
+      gsap.set(revealTargets, { opacity: 0 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sec,
+          start: 'top top',
+          end: '+=140%',
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1
+        }
+      });
+
+      if (num) {
+        tl.fromTo(num,
+          { opacity: 0, scale: 0.6, filter: 'blur(18px)' },
+          { opacity: 1, scale: 1, filter: 'blur(0px)', ease: 'none', duration: 1 }
+        );
+      }
+      if (eyebrow) {
+        tl.fromTo(eyebrow, { opacity: 0, y: 24 }, { opacity: 1, y: 0, ease: 'none', duration: 0.6 }, 0.15);
+      }
+      if (h2) {
+        tl.fromTo(h2,
+          { opacity: 0, y: 70, rotateX: 25, transformPerspective: 900 },
+          { opacity: 1, y: 0, rotateX: 0, ease: 'none', duration: 1.1 },
+          0.3
+        );
+      }
+      if (p) {
+        tl.fromTo(p, { opacity: 0, y: 30 }, { opacity: 1, y: 0, ease: 'none', duration: 0.9 }, 0.75);
+      }
+      if (keep) {
+        tl.fromTo(keep, { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.4 }, 1.1);
+      }
+
+      // Hold, then fade the whole panel out so the next one reads as a clean cut.
+      tl.to(revealTargets, { opacity: 0.15, y: -30, ease: 'none', duration: 0.6 }, 1.9);
+    });
+
+    return () => {};
+  });
+
+  introMM.add('(max-width: 820px)', () => {
+    gsap.utils.toArray('.next-section').forEach(sec => {
+      const num = sec.querySelector('.num');
+      const h2 = sec.querySelector('h2');
+      const p = sec.querySelector('p');
+
+      if (num) {
+        gsap.fromTo(num,
+          { scale: 0.7, opacity: 0.2 },
+          {
+            scale: 1.1,
+            opacity: 1,
+            ease: 'none',
+            scrollTrigger: { trigger: sec, start: 'top 80%', end: 'bottom 40%', scrub: 1 }
+          }
+        );
+      }
+      if (h2 && p) {
+        gsap.fromTo([h2, p],
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: sec, start: 'top 75%', toggleActions: 'play reverse play reverse' }
+          }
+        );
+      }
+    });
+
+    return () => {};
+  });
+
+  // Advanced Entry and Exit Scroll Reveals for section shell
   gsap.utils.toArray('.reveal-section').forEach(section => {
     gsap.fromTo(section, 
       { opacity: 0, y: 60, scale: 0.97 },
@@ -263,15 +364,16 @@ function scrollMotion() {
     );
   });
 
-  // Staggered reveal for grid elements (excluding approach-step for customized timeline below)
-  gsap.utils.toArray('.bento-cell, .timeline-card, .contact-links a').forEach((el, i) => {
+  // Staggered reveal for grid elements
+  gsap.utils.toArray('.bento-cell, .timeline-card').forEach((el, i) => {
     gsap.fromTo(el,
-      { y: 35, opacity: 0 },
+      { y: 40, opacity: 0, scale: 0.96 },
       {
         y: 0,
         opacity: 1,
-        duration: 0.8,
-        delay: (i % 3) * 0.05,
+        scale: 1,
+        duration: 0.85,
+        delay: (i % 3) * 0.06,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: el,
@@ -283,7 +385,7 @@ function scrollMotion() {
     );
   });
 
-  // Staggered Reveal and sequential line draw for Core Competence Steps
+  // Core Competence Steps sequential reveal
   const stepsTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: '.approach-grid',
@@ -298,14 +400,32 @@ function scrollMotion() {
     { y: 0, opacity: 1, duration: 0.75, stagger: 0.15, ease: 'power3.out' }
   );
 
-  // Cool alternating slide-in scroll reveal for editorial projects
+  // Parallax Image Scrubbing + Alternating Slide for Editorial Project Cards
   gsap.utils.toArray('.project-item').forEach((item, i) => {
     const isEven = i % 2 === 1;
     const imgWrapper = item.querySelector('.project-image-wrapper');
+    const img = item.querySelector('.project-image');
     const content = item.querySelector('.project-card-content');
     
+    if (imgWrapper && img) {
+      // Internal image parallax scrub
+      gsap.fromTo(img,
+        { yPercent: -10, scale: 1.12 },
+        {
+          yPercent: 10,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: imgWrapper,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        }
+      );
+    }
+
     gsap.fromTo(imgWrapper, 
-      { opacity: 0, x: isEven ? 60 : -60, scale: 0.96 },
+      { opacity: 0, x: isEven ? 60 : -60, scale: 0.95 },
       {
         opacity: 1,
         x: 0,
@@ -358,11 +478,7 @@ function scrollMotion() {
   gsap.utils.toArray('.timeline-item').forEach((item) => {
     const card = item.querySelector('.timeline-card');
     const dot = item.querySelector('.timeline-dot');
-    const isEven = item.classList.contains('timeline-item') && window.getComputedStyle(item).left !== '0px'; 
-    // Alternate sides: on desktop: even items have left: 50% / padding-left: 48px
-    // To be safe and check if it's even, we can query nth-child or simply inspect layout
     
-    // We can check if it's the 2nd child, etc. among timeline items specifically
     const siblingItems = Array.from(item.parentNode.querySelectorAll('.timeline-item'));
     const index = siblingItems.indexOf(item);
     const isRightSide = index % 2 === 1;
@@ -394,7 +510,7 @@ function scrollMotion() {
         scale: 1,
         opacity: 1,
         duration: 0.5,
-        ease: 'back.out(1.7)',
+        ease: 'back.out(1.8)',
         scrollTrigger: {
           trigger: item,
           start: 'top 85%',
@@ -438,13 +554,12 @@ function pointerDepth() {
     requestAnimationFrame(() => {
       raf = false;
       gsap.to('.portrait', {x: mx * 8, y: my * 5, duration: 0.8, ease: 'power2.out', overwrite: 'auto'});
-      gsap.to('.hero-ring', {x: -mx * 3, y: -my * 2, duration: 1.0, ease: 'power2.out', overwrite: 'auto'});
       gsap.to('.left-name, .right-name', {x: mx * 4, y: my * 2, duration: 1.0, ease: 'power2.out', overwrite: 'auto'});
     });
   });
 
   hero.addEventListener('mouseleave', () => {
-    gsap.to('.portrait, .hero-ring, .left-name, .right-name', {x: 0, y: 0, duration: 1.0, ease: 'power3.out', overwrite: 'auto'});
+    gsap.to('.portrait, .left-name, .right-name', {x: 0, y: 0, duration: 1.0, ease: 'power3.out', overwrite: 'auto'});
   });
 }
 
@@ -489,19 +604,48 @@ function initMagneticButtons() {
   });
 }
 
-function initProjectHover() {
+function initCursorSpotlight() {
   if (reduced) return;
-  const projectItems = document.querySelectorAll('.project-item');
-  projectItems.forEach(item => {
-    const img = item.querySelector('.project-image');
-    if (!img) return;
-    item.addEventListener('mouseenter', () => {
-      gsap.to(img, { scale: 1.06, duration: 0.6, ease: 'power2.out' });
-    });
-    item.addEventListener('mouseleave', () => {
-      gsap.to(img, { scale: 1, duration: 0.6, ease: 'power2.out' });
+  const spotlight = document.getElementById('cursor-spotlight');
+  if (!spotlight) return;
+  
+  let posX = window.innerWidth / 2;
+  let posY = window.innerHeight / 2;
+
+  window.addEventListener('mousemove', e => {
+    posX = e.clientX;
+    posY = e.clientY;
+    gsap.to(spotlight, {
+      left: posX,
+      top: posY,
+      duration: 0.6,
+      ease: 'power2.out',
+      overwrite: 'auto'
     });
   });
+}
+
+function initCopyActions() {
+  const emailCard = document.querySelector('a[href^="mailto:"]');
+  const phoneCard = document.querySelector('a[href^="tel:"]');
+
+  if (emailCard) {
+    emailCard.addEventListener('click', (e) => {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText('alfredwalker180@gmail.com');
+        showToast('Email address copied to clipboard!');
+      }
+    });
+  }
+
+  if (phoneCard) {
+    phoneCard.addEventListener('click', (e) => {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText('+233535594525');
+        showToast('Phone number copied to clipboard!');
+      }
+    });
+  }
 }
 
 function debounce(fn, wait) {
@@ -541,6 +685,20 @@ window.addEventListener('load', () => {
     });
 
     gsap.ticker.lagSmoothing(0);
+
+    // Route every in-page anchor link through Lenis instead of the native jump.
+    // A native scroll jump (or CSS scroll-behavior: smooth) bypasses Lenis entirely,
+    // which desyncs ScrollTrigger's pinned sections and can leave them stuck mid-reveal.
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      const hash = link.getAttribute('href');
+      if (hash.length <= 1) return;
+      const target = document.querySelector(hash);
+      if (!target) return;
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        lenis.scrollTo(target);
+      });
+    });
   } catch (e) {
     console.error("Lenis initialization failed:", e);
   }
@@ -577,7 +735,12 @@ window.addEventListener('load', () => {
     initMagneticButtons();
   } catch (e) { console.error(e); }
 
+
   try {
-    initProjectHover();
+    initCursorSpotlight();
+  } catch (e) { console.error(e); }
+
+  try {
+    initCopyActions();
   } catch (e) { console.error(e); }
 });

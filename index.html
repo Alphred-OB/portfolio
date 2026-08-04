@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
 <title>Alfred Boakye - Developer and Co-Founder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/product-sans">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="stylesheet" href="assets/css/lenis.css">
@@ -16,37 +16,36 @@
 </head>
 <body>
 <main>
+<div id="cursor-spotlight" aria-hidden="true"></div>
+
+<nav class="top-nav" aria-label="Primary navigation">
+  <a class="logo" href="#home" aria-label="Alfred Boakye home">AB</a>
+  <div class="nav-links" role="list">
+    <a class="active" href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right" style="display: flex; align-items: center; gap: 10px;">
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+      <span>Theme</span>
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </div>
+</nav>
+
 <section class="hero" id="home">
   <canvas class="noise" id="noise" aria-hidden="true"></canvas>
   <div class="vignette" aria-hidden="true"></div>
-  
-  <nav class="top-nav" aria-label="Primary navigation">
-    <a class="logo" href="#home" aria-label="Alfred Boakye home">AB</a>
-    <div class="nav-links" role="list">
-      <a class="active" href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#projects">Projects</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" aria-pressed="false">
-      <span>Theme</span>
-      <i class="fa-solid fa-sun"></i>
-    </button>
-  </nav>
 
   <aside class="socials" aria-label="Social links">
     <a href="mailto:alfredwalker180@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
     <a href="https://wa.me/233535594525" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
     <a href="tel:+233535594525" aria-label="Call Alfred"><i class="fa-solid fa-phone"></i></a>
   </aside>
-
-  <div class="side-scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="side-line"></div>
-  </div>
 
   <div class="stage">
     <div class="name-area left">
@@ -60,11 +59,6 @@
     </div>
     <div class="centerpiece" aria-label="Portrait composition">
       <div class="hero-glow" aria-hidden="true"></div>
-      <div class="hero-ring" aria-hidden="true">
-        <svg viewBox="0 0 320 320">
-          <circle cx="160" cy="160" r="140"></circle>
-        </svg>
-      </div>
       <div class="portrait">
         <div class="portrait-mask">
           <img src="me.png" width="1280" height="1280" loading="eager" alt="Portrait of Alfred Boakye">
@@ -189,8 +183,7 @@
       
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/CEANA-REDESIGNED_WEBSITE.webp" alt="CEANA Website Redesign" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/CEANA-REDESIGNED_WEBSITE.webp" alt="CEANA Website Redesign" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">01 / Web Platform</span>
           <h3>CEANA Website Redesign</h3>
@@ -205,8 +198,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/HOMELAB.jpg" alt="Security Homelab Setup" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/HOMELAB.jpg" alt="Security Homelab Setup" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">02 / Cyber Security</span>
           <h3>Security Pentesting Lab</h3>
@@ -221,8 +213,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/EruditeAcademy.webp" alt="Erudite Academy Portal" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/EruditeAcademy.webp" alt="Erudite Academy Portal" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">03 / School System</span>
           <h3>Erudite Academy Portal</h3>
@@ -237,8 +228,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/SKILLS BRIDGE FOUNDATION.webp" alt="Skills Bridge Hub" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/SKILLS BRIDGE FOUNDATION.webp" alt="Skills Bridge Hub" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">04 / NGO Web Portal</span>
           <h3>Skills Bridge Hub</h3>
@@ -253,8 +243,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/POS_SYSTEM.webp" alt="POS System Interface" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/POS_SYSTEM.webp" alt="POS System Interface" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">05 / Business Utility</span>
           <h3>POS &amp; Inventory Engine</h3>
@@ -269,8 +258,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/TECHHUB_EMPLOYEE_PORTAL.webp" alt="TechHub Employee Portal" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/TECHHUB_EMPLOYEE_PORTAL.webp" alt="TechHub Employee Portal" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">06 / Internal Tool</span>
           <h3>TechHub Employee Portal</h3>
@@ -285,8 +273,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/EWAGA.webp" alt="EWAGA Portal" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/EWAGA.webp" alt="EWAGA Portal" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">07 / Web Portal</span>
           <h3>EWAGA Hub</h3>
@@ -301,8 +288,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/GESA.webp" alt="GESA Platform" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/GESA.webp" alt="GESA Platform" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">08 / Association Portal</span>
           <h3>GESA Student Platform</h3>
@@ -317,8 +303,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/GHASS-G.webp" alt="GHASS-G Database" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/GHASS-G.webp" alt="GHASS-G Database" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">09 / Resource Site</span>
           <h3>GHASS-G Administrative Portal</h3>
@@ -333,8 +318,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/GHSIC.webp" alt="GHSIC secure gateway" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/GHSIC.webp" alt="GHSIC secure gateway" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">10 / Secure Resource Gateway</span>
           <h3>GHSIC Secured Portal</h3>
@@ -349,8 +333,7 @@
 
       <div class="project-item">
         <div class="project-image-wrapper">
-          <img src="Projects/hopsausa-canada.webp" alt="HOPSA Alumni Website" class="project-image" loading="lazy">
-        </div>
+          <img src="Projects/hopsausa-canada.webp" alt="HOPSA Alumni Website" class="project-image" loading="lazy">        </div>
         <div class="project-card-content">
           <span class="project-index">11 / Alumni Network</span>
           <h3>HOPSA USA-Canada Website</h3>
@@ -585,6 +568,21 @@
     </div>
   </div>
 </section>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a class="logo" href="#home" style="font-size: 1.1rem;">AB</a>
+      <span class="copyright">© 2026 Alfred Boakye. All rights reserved.</span>
+    </div>
+    <div class="footer-center">
+      <span class="location-tag"><i class="fa-solid fa-location-dot"></i> Accra, Ghana 🇬🇭</span>
+    </div>
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+      Back to Top <i class="fa-solid fa-arrow-up"></i>
+    </a>
+  </div>
+</footer>
 </main>
 
 <div id="toast-container" style="position: fixed; bottom: 32px; right: 32px; z-index: 150; display: flex; flex-direction: column; gap: 12px; pointer-events: none;"></div>
