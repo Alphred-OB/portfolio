@@ -1675,7 +1675,14 @@ html[data-theme="dark"] .timeline-logo { padding: 4px 8px; border-radius: 8px; b
 .sec-num { font-family: var(--font-display); font-size: 1.4rem; line-height: 1.1; color: var(--accent); }
 .sec-item h3 { margin: 0 0 6px; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
 .sec-item p { margin: 0; font-size: 0.95rem; color: color-mix(in srgb, var(--invert-text) 62%, transparent); }
-.sec-more { margin: 36px 0 0; padding-top: 26px; border-top: 1px solid color-mix(in srgb, var(--invert-text) 14%, transparent); font-size: 1.05rem; color: color-mix(in srgb, var(--invert-text) 80%, transparent); }
+.sec-list .is-extra { display: none; }
+.sec-list.is-open .is-extra { display: grid; animation: fadeUp 0.6s var(--ease) both; }
+.sec-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; margin-top: 12px; padding-top: 26px; border-top: 1px solid color-mix(in srgb, var(--invert-text) 14%, transparent); }
+.sec-toggle { display: inline-flex; align-items: center; gap: 12px; height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--invert-text) 25%, transparent); color: var(--invert-text); font-weight: 500; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+.sec-toggle .ico { transition: transform 0.5s var(--ease); }
+.sec-toggle:hover { background: var(--invert-text); color: var(--invert-bg); border-color: var(--invert-text); }
+.sec-toggle[aria-expanded="true"] .ico { transform: rotate(45deg); }
+.sec-more { margin: 0; font-size: 1.05rem; color: color-mix(in srgb, var(--invert-text) 80%, transparent); }
 .pr-chips li.pr-more { border-style: dashed; color: var(--text-3); }
 
 /* Case study cards */
