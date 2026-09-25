@@ -551,21 +551,19 @@ function initFAQ() {
 function initCursor() {
   if (!finePointer || reduced) return;
   const ring = $('.cursor');
-  const dot = $('.cursor-dot');
   const label = $('.cursor-label');
-  const rx = gsap.quickTo(ring, 'x', { duration: 0.5, ease: 'power3.out' });
-  const ry = gsap.quickTo(ring, 'y', { duration: 0.5, ease: 'power3.out' });
-  const dx = gsap.quickTo(dot, 'x', { duration: 0.1 });
-  const dy = gsap.quickTo(dot, 'y', { duration: 0.1 });
+  // Short follow time so the arrow feels precise but still smooth
+  const rx = gsap.quickTo(ring, 'x', { duration: 0.12, ease: 'power3.out' });
+  const ry = gsap.quickTo(ring, 'y', { duration: 0.12, ease: 'power3.out' });
 
   root.classList.add('has-cursor');
   window.addEventListener('mousedown', () => ring.classList.add('is-down'));
   window.addEventListener('mouseup', () => ring.classList.remove('is-down'));
   window.addEventListener('mousemove', e => {
-    gsap.set([ring, dot], { opacity: 1 });
-    rx(e.clientX); ry(e.clientY); dx(e.clientX); dy(e.clientY);
+    gsap.set(ring, { opacity: 1 });
+    rx(e.clientX); ry(e.clientY);
   });
-  document.addEventListener('mouseleave', () => gsap.set([ring, dot], { opacity: 0 }));
+  document.addEventListener('mouseleave', () => gsap.set(ring, { opacity: 0 }));
 
   $$('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
