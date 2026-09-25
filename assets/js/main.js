@@ -254,10 +254,6 @@ function initNav() {
     }
   });
 
-  $('#menuToggle').addEventListener('click', () => {
-    const open = $('#menuToggle').getAttribute('aria-expanded') === 'true';
-    open ? closeMenu() : openMenu();
-  });
 }
 
 // Flip nav colours while it sits over a dark section (runs after pinning so spacers exist)
@@ -279,12 +275,8 @@ function openMenu() {
   $('.nav').classList.add('menu-open');
   btn.setAttribute('aria-label', 'Close menu');
   $('#mobileMenu').setAttribute('aria-hidden', 'false');
+  $('#mobileMenu').classList.add('is-open');
   if (lenis) lenis.stop();
-  gsap.timeline()
-    .set('#mobileMenu', { visibility: 'visible' })
-    .to('#mobileMenu', { clipPath: 'inset(0 0 0% 0)', duration: 0.8, ease: 'expo.inOut' })
-    .fromTo('#mobileMenu nav a', { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.06, ease: 'expo.out' }, '-=0.35')
-    .fromTo('.mobile-menu-foot', { opacity: 0 }, { opacity: 1, duration: 0.5 }, '-=0.5');
 }
 
 function closeMenu() {
@@ -294,13 +286,8 @@ function closeMenu() {
   $('.nav').classList.remove('menu-open');
   btn.setAttribute('aria-label', 'Open menu');
   $('#mobileMenu').setAttribute('aria-hidden', 'true');
+  $('#mobileMenu').classList.remove('is-open');
   if (lenis) lenis.start();
-  gsap.to('#mobileMenu', {
-    clipPath: 'inset(0 0 100% 0)',
-    duration: 0.7,
-    ease: 'expo.inOut',
-    onComplete: () => gsap.set('#mobileMenu', { visibility: 'hidden' })
-  });
 }
 
 /* ------------------------------------------------------------
@@ -654,5 +641,16 @@ window.addEventListener('resize', debounce(() => {
   ScrollTrigger.refresh();
 }, 200));
 
+// The menu button works straight away, before fonts and animations are ready
+(function initMenuToggle() {
+  const btn = $('#menuToggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    btn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+})();
+
 const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-Promise.race([fontsReady, new Promise(r => setTimeout(r, 1500))]).then(init);
+// Start even if font loading fails
+Promise.race([fontsReady, new Promise(r => setTimeout(r, 1500))]).then(init, init);

@@ -427,10 +427,29 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   justify-content: space-between;
   padding: 110px var(--gutter) 32px;
   background: var(--bg);
+  -webkit-clip-path: inset(0 0 100% 0);
   clip-path: inset(0 0 100% 0);
   visibility: hidden;
+  transition: clip-path 0.8s cubic-bezier(0.87, 0, 0.13, 1), -webkit-clip-path 0.8s cubic-bezier(0.87, 0, 0.13, 1), visibility 0s linear 0.8s;
+}
+.mobile-menu.is-open {
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+  visibility: visible;
+  transition: clip-path 0.8s cubic-bezier(0.87, 0, 0.13, 1), -webkit-clip-path 0.8s cubic-bezier(0.87, 0, 0.13, 1), visibility 0s;
 }
 .mobile-menu nav { display: flex; flex-direction: column; }
+.mobile-menu nav a, .mobile-menu-foot {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s, transform 0.8s var(--ease);
+}
+.mobile-menu.is-open nav a, .mobile-menu.is-open .mobile-menu-foot { opacity: 1; transform: none; }
+.mobile-menu.is-open nav a:nth-child(1) { transition-delay: 0.35s; }
+.mobile-menu.is-open nav a:nth-child(2) { transition-delay: 0.41s; }
+.mobile-menu.is-open nav a:nth-child(3) { transition-delay: 0.47s; }
+.mobile-menu.is-open nav a:nth-child(4) { transition-delay: 0.53s; }
+.mobile-menu.is-open .mobile-menu-foot { transition-delay: 0.6s; }
 .mobile-menu nav a {
   display: flex;
   align-items: baseline;
