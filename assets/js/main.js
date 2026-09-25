@@ -1,7 +1,9 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const root = document.documentElement;
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Motion is the core of this site, so it plays even when the OS asks for reduced motion
+// (Windows turns that on whenever "Animation effects" is off).
+const reduced = false;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
