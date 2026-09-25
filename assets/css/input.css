@@ -1079,6 +1079,14 @@ html.is-entering .curtain-label { opacity: 1; }
   box-shadow: 0 10px 24px -12px var(--brand);
 }
 .toolbox-note { margin: 28px 0 0; color: var(--text-2); }
+.toolbox-intro { max-width: 520px; margin: 24px 0 0; color: var(--text-2); font-size: 1.05rem; }
+.tool-more {
+  border-style: dashed;
+  background: transparent;
+  color: var(--text-2);
+  padding: 0 18px;
+}
+.tool-more:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; }
 
 /* ------------------------------------------------------------
    FAQ
