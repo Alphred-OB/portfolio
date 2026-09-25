@@ -1,0 +1,29 @@
+# Alfred Boakye
+
+> Freelance developer and co-founder of Erudite Africa Network (EAN), based in Ghana and working with clients worldwide. Alfred builds secure websites, web apps, progressive web apps, mobile apps for Android and iPhone, desktop apps and point of sale (POS) systems. He has a cyber security background from the University of Mines and Technology (UMaT), and apps he has built serve more than 6,000 users.
+
+## What he offers
+- Websites, web apps, portals and dashboards
+- Mobile apps and progressive web apps (PWA)
+- Desktop apps for Windows, Mac and Linux
+- POS, stock and business systems
+- Redesigns, speed upgrades, SEO and AI search visibility (AEO)
+
+## How he works
+- Designed for phones, tablets and desktops
+- Security built in: encrypted connections, protected passwords, attack protection, rate limits and backups
+- Fast loading with caching and a global CDN
+- AI assisted development, personally reviewed and tested
+
+## Pages
+- [Home](https://alphred-ob.github.io/portfolio/): overview, services, work and reviews
+- [About](https://alphred-ob.github.io/portfolio/about.html): journey, tools and how he works
+- [Work](https://alphred-ob.github.io/portfolio/work.html): selected projects
+- [Notes](https://alphred-ob.github.io/portfolio/notes.html): articles on building secure, fast software
+- [Contact](https://alphred-ob.github.io/portfolio/contact.html): email, WhatsApp and FAQ
+
+## Contact
+- Email: alfredwalker180@gmail.com
+- WhatsApp: +233 53 559 4525
+- GitHub: https://github.com/Alphred-OB
+- LinkedIn: https://www.linkedin.com/in/alfredboakye/

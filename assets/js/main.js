@@ -395,8 +395,9 @@ function initReveals() {
   batchUp('.process-body', { y: 40 });
   batchUp('.sec-card', { y: 40 });
   batchUp('.review-card', { y: 50 });
+  batchUp('.pr-card', { y: 50 });
   // Stars pop in one by one when the rating comes into view
-  $$('.rating-row .stars, .review-card .stars').forEach(group => {
+  $$('.rating-panel .stars, .review-card .stars').forEach(group => {
     gsap.from($$('svg', group), {
       scale: 0,
       rotate: -90,
@@ -455,6 +456,39 @@ function initProcess() {
 
 // Pause the looping logo rows while they are off screen
 // Security: a scan line sweeps across the cards once they are on screen
+// How I build: device frames rise in, bad design habits get struck out, the AI answers
+function initPractices() {
+  const devices = $('.devices');
+  if (devices) {
+    gsap.from($$('.device', devices), {
+      y: 80,
+      opacity: 0,
+      duration: 1.3,
+      stagger: 0.15,
+      ease: 'expo.out',
+      scrollTrigger: { trigger: devices, start: 'top 80%' }
+    });
+  }
+  $$('.pr-strike').forEach(list => {
+    ScrollTrigger.create({ trigger: list, start: 'top 80%', once: true, onEnter: () => list.classList.add('is-in') });
+  });
+  $$('.ai-chat').forEach(chat => {
+    ScrollTrigger.create({ trigger: chat, start: 'top 80%', once: true, onEnter: () => setTimeout(() => chat.classList.add('is-answered'), 1400) });
+  });
+  // Ratings count up from zero
+  $$('[data-rating]').forEach(el => {
+    const to = parseFloat(el.dataset.rating);
+    const obj = { v: 0 };
+    el.textContent = '0.0';
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 90%',
+      once: true,
+      onEnter: () => gsap.to(obj, { v: to, duration: 1.6, ease: 'power3.out', onUpdate: () => { el.textContent = obj.v.toFixed(1); } })
+    });
+  });
+}
+
 function initSecurity() {
   $$('.sec-grid').forEach(grid => {
     ScrollTrigger.create({
@@ -542,13 +576,15 @@ function initSocial() {
     });
     panel.addEventListener('mouseleave', () => { ix(0); iy(0); });
   });
-  gsap.from(panels, {
-    y: 60,
-    opacity: 0,
-    duration: 1.2,
-    stagger: 0.12,
-    ease: 'expo.out',
-    scrollTrigger: { trigger: '.social-panels', start: 'top 85%' }
+  $$('.social-panels').forEach(group => {
+    gsap.from($$('.social-panel', group), {
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.12,
+      ease: 'expo.out',
+      scrollTrigger: { trigger: group, start: 'top 85%' }
+    });
   });
 }
 
@@ -765,6 +801,7 @@ function init() {
     safe(initProcess);
     safe(initMarquee);
   }
+  safe(initPractices);
   safe(initSecurity);
   safe(initRails);
   safe(initToolbox);
