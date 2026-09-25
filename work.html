@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Selected projects by Alfred Boakye: websites and online systems for businesses, schools and communities.">
+<title>Work | Alfred Boakye</title>
+<script>
+  (function (d) {
+    d.classList.add('js');
+    try { var t = localStorage.getItem('ab-theme'); if (t) d.dataset.theme = t; } catch (e) {}
+    try {
+      // Arriving from another page: start behind the curtain, skip the intro loader
+      if (sessionStorage.getItem('ab-enter') !== null) d.classList.add('is-entering');
+      if (sessionStorage.getItem('ab-visited')) d.classList.add('no-loader');
+      sessionStorage.setItem('ab-visited', '1');
+    } catch (e) {}
+  })(document.documentElement);
+</script>
+<link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/lenis.css?v=7">
+<link rel="stylesheet" href="assets/css/style.css?v=7">
+</head>
+<body>
+
+<!-- Page transition overlay -->
+<div class="curtain" aria-hidden="true">
+  <div class="curtain-panel"></div>
+  <span class="curtain-label" id="curtainLabel"></span>
+</div>
+<script>try { var l = sessionStorage.getItem('ab-enter'); if (l) document.getElementById('curtainLabel').textContent = l; } catch (e) {}</script>
+
+<!-- Scroll progress + custom cursor -->
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+<div class="cursor" aria-hidden="true"><span class="cursor-label">View</span></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" data-label="Home">Alfred<span>.</span></a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html" data-label="Home">Home</a>
+    <a href="about.html" data-label="About">About</a>
+    <a href="work.html" data-label="Work" aria-current="page">Work</a>
+    <a href="contact.html" data-label="Contact">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
+      <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+      <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2M12 20.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1.5 12h2M20.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+    </button>
+    <a class="nav-cta" href="contact.html" data-label="Contact"><span>Let's talk</span></a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="index.html" data-label="Home"><small>01</small>Home</a>
+    <a href="about.html" data-label="About"><small>02</small>About</a>
+    <a href="work.html" data-label="Work" aria-current="page"><small>03</small>Work</a>
+    <a href="contact.html" data-label="Contact"><small>04</small>Contact</a>
+  </nav>
+  <div class="mobile-menu-foot">
+    <a href="mailto:alfredwalker180@gmail.com">alfredwalker180@gmail.com</a>
+    <span>Ghana / Remote</span>
+  </div>
+</div>
+
+<!-- Section index, mapped to scroll -->
+<aside class="section-meter" aria-hidden="true">
+  <span class="section-meter-num" id="meterNum">00</span>
+  <span class="section-meter-track"><span id="meterFill"></span></span>
+  <span class="section-meter-name" id="meterName">Intro</span>
+</aside>
+
+<main id="top">
+
+<section class="work" id="work" data-name="Work">
+  <div class="work-pin">
+    <div class="work-head container">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Selected work</span>
+        <h1 class="section-title"><span class="reveal-line"><span>Recent projects</span></span></h1>
+      </div>
+      <div class="work-counter" aria-hidden="true">
+        <span id="workCurrent">01</span><span class="sep">/</span><span>11</span>
+      </div>
+    </div>
+
+    <div class="work-track" id="workTrack">
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/CEANA-REDESIGNED_WEBSITE.webp" alt="CEANA website redesign" loading="lazy"></div>
+        <div class="work-meta"><span>01</span><span>Website Redesign</span></div>
+        <h3>CEANA</h3>
+        <p>Turned an old, outdated website into a clean, modern and engaging experience.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/EruditeAcademy.webp" alt="Erudite Academy learning platform" loading="lazy"></div>
+        <div class="work-meta"><span>02</span><span>Learning Platform</span></div>
+        <h3>Erudite Academy</h3>
+        <p>An online learning platform where students build new skills and earn certificates, running smoothly for a large community.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/TECHHUB_EMPLOYEE_PORTAL.webp" alt="TechHub employee portal" loading="lazy"></div>
+        <div class="work-meta"><span>03</span><span>Staff Portal</span></div>
+        <h3>TechHub</h3>
+        <p>The employee portal for one of Ghana's largest tech companies.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/SKILLS BRIDGE FOUNDATION.webp" alt="Skills Bridge Foundation website" loading="lazy"></div>
+        <div class="work-meta"><span>04</span><span>Non-profit</span></div>
+        <h3>Skills Bridge</h3>
+        <p>A fast, secure website for a foundation that connects young people to new skills.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/POS_SYSTEM.webp" alt="Point of sale system" loading="lazy"></div>
+        <div class="work-meta"><span>05</span><span>Business Tool</span></div>
+        <h3>Sales &amp; Stock System</h3>
+        <p>A checkout and stock system that helps shops track every sale and item in one place.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/EWAGA.webp" alt="EWAGA community website" loading="lazy"></div>
+        <div class="work-meta"><span>06</span><span>Community</span></div>
+        <h3>EWAGA</h3>
+        <p>The official home of the Ewe Association of Georgia, with memberships, events and community news.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/GESA.webp" alt="GESA student website" loading="lazy"></div>
+        <div class="work-meta"><span>07</span><span>Student Association</span></div>
+        <h3>GESA</h3>
+        <p>A student portal at UMaT giving members easy, secure access to their resources.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/GHASS-G.webp" alt="GHASS-G website" loading="lazy"></div>
+        <div class="work-meta"><span>08</span><span>Training</span></div>
+        <h3>GHASS-G</h3>
+        <p>A course catalogue and certification website for the Global Health and Safety Group.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/GHSIC.webp" alt="GHSIC website" loading="lazy"></div>
+        <div class="work-meta"><span>09</span><span>Careers</span></div>
+        <h3>GHSIC</h3>
+        <p>Connecting students across Ghana with internships and career training.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/hopsausa-canada.webp" alt="HOPSA USA-Canada website" loading="lazy"></div>
+        <div class="work-meta"><span>10</span><span>Alumni Network</span></div>
+        <h3>HOPSA USA-Canada</h3>
+        <p>A members' website helping alumni stay in touch and network across two countries.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/HOMELAB.jpg" alt="Private server setup" loading="lazy"></div>
+        <div class="work-meta"><span>11</span><span>Personal Project</span></div>
+        <h3>Private Server Lab</h3>
+        <p>My own server at home, hosting a website and streaming service, which I use to practise keeping systems safe.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="contact cta" id="cta" data-name="Contact">
+  <div class="container">
+    <span class="eyebrow"><span class="dot"></span>Have a project in mind?</span>
+    <h2 class="contact-title">
+      <span class="reveal-line"><span>Let's work</span></span>
+      <span class="reveal-line"><span class="outline">together</span></span>
+    </h2>
+    <div class="contact-links">
+      <a href="contact.html" data-label="Contact" class="pill pill-solid">Start a project <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="mailto:alfredwalker180@gmail.com" class="pill">alfredwalker180@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>&copy; 2026 Alfred Boakye</span>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="index.html" data-label="Home">Home</a>
+      <a href="about.html" data-label="About">About</a>
+      <a href="work.html" data-label="Work">Work</a>
+      <a href="contact.html" data-label="Contact">Contact</a>
+    </nav>
+    <a href="#top" class="to-top">Back to top <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+  </div>
+</footer>
+
+<script src="assets/js/gsap.min.js?v=7"></script>
+<script src="assets/js/ScrollTrigger.min.js?v=7"></script>
+<script src="assets/js/lenis.min.js?v=7"></script>
+<script src="assets/js/main.js?v=7"></script>
+</body>
+</html>
