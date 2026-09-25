@@ -237,32 +237,13 @@ html.is-entering .curtain-label { opacity: 1; }
   left: 0;
   z-index: 400;
   pointer-events: none;
-  opacity: 0;
-  /* Put the arrow tip exactly on the mouse position */
-  margin: -2.9px 0 0 -3.25px;
+  will-change: transform;
 }
-.cursor-arrow {
-  display: block;
-  width: 26px;
-  height: 26px;
-  overflow: visible;
-  transform-origin: 3px 3px;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-  transition: transform 0.35s var(--ease);
-}
-.cursor-arrow path {
-  fill: var(--accent);
-  stroke: #fff;
-  stroke-width: 1.6;
-  stroke-linejoin: round;
-}
-.cursor.is-hover .cursor-arrow { transform: scale(1.18); }
-.cursor.is-down .cursor-arrow { transform: scale(0.85); }
-/* Small name tag beside the arrow, like a collaborator cursor */
+/* Small name tag beside the pointer, like a collaborator cursor */
 .cursor-label {
   position: absolute;
-  left: 22px;
-  top: 22px;
+  left: 20px;
+  top: 24px;
   padding: 5px 12px;
   border-radius: 999px;
   background: var(--accent);
@@ -278,11 +259,20 @@ html.is-entering .curtain-label { opacity: 1; }
   transition: opacity 0.25s, transform 0.4s var(--ease);
 }
 .cursor.is-label .cursor-label { opacity: 1; transform: none; }
+
+/* The pointer itself is the real system cursor with a custom image,
+   so it moves exactly with the mouse (no lag) */
+@media (hover: hover) and (pointer: fine) {
+  html, body {
+    cursor: url('../cursor/arrow.svg') 3 2, url('../cursor/arrow.png') 3 2, auto;
+  }
+  a, button, summary, label, [role="button"], .work-card {
+    cursor: url('../cursor/arrow-hover.svg') 4 3, url('../cursor/arrow-hover.png') 4 3, pointer;
+  }
+}
 @media (hover: none), (pointer: coarse) {
   .cursor { display: none; }
 }
-/* Hide the system arrow only once the custom pointer is running */
-html.has-cursor, html.has-cursor * { cursor: none !important; }
 
 /* ------------------------------------------------------------
    Navigation

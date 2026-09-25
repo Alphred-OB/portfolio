@@ -537,33 +537,21 @@ function initFAQ() {
 ------------------------------------------------------------ */
 function initCursor() {
   if (!finePointer || reduced) return;
-  const ring = $('.cursor');
+  const tag = $('.cursor');
   const label = $('.cursor-label');
-  // Short follow time so the arrow feels precise but still smooth
-  const rx = gsap.quickTo(ring, 'x', { duration: 0.12, ease: 'power3.out' });
-  const ry = gsap.quickTo(ring, 'y', { duration: 0.12, ease: 'power3.out' });
 
-  root.classList.add('has-cursor');
-  window.addEventListener('mousedown', () => ring.classList.add('is-down'));
-  window.addEventListener('mouseup', () => ring.classList.remove('is-down'));
+  // Follow the mouse directly (no easing) so the tag never lags behind the pointer
   window.addEventListener('mousemove', e => {
-    gsap.set(ring, { opacity: 1 });
-    rx(e.clientX); ry(e.clientY);
-  });
-  document.addEventListener('mouseleave', () => gsap.set(ring, { opacity: 0 }));
-
-  $$('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('is-hover'));
-  });
+    tag.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+  }, { passive: true });
 
   const labelled = [
     ...$$('.work-card').map(el => [el, 'Scroll']),
     ...$$('[data-cursor]').map(el => [el, el.dataset.cursor])
   ];
   labelled.forEach(([el, text]) => {
-    el.addEventListener('mouseenter', () => { label.textContent = text; ring.classList.add('is-label'); });
-    el.addEventListener('mouseleave', () => ring.classList.remove('is-label'));
+    el.addEventListener('mouseenter', () => { label.textContent = text; tag.classList.add('is-label'); });
+    el.addEventListener('mouseleave', () => tag.classList.remove('is-label'));
   });
 
   $$('.nav-cta, .theme-toggle, .hero-badge, .pill').forEach(el => {
