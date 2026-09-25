@@ -391,7 +391,7 @@ function initReveals() {
   batchUp('.about-grid > *');
   batchUp('.service', { y: 40 });
   batchUp('.process-body', { y: 40 });
-  batchUp('.sec-item', { y: 30 });
+  batchUp('.sec-item:not(.is-extra)', { y: 30 });
   batchUp('.case-card', { y: 50 });
   batchUp('.review-card', { y: 50 });
   batchUp('.pr-card', { y: 50 });
@@ -492,6 +492,18 @@ function initPractices() {
 }
 
 function initSecurity() {
+  $$('.sec-toggle').forEach(btn => {
+    const list = btn.closest('.container').querySelector('.sec-list');
+    const label = $('span', btn);
+    btn.addEventListener('click', () => {
+      const open = !list.classList.contains('is-open');
+      list.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open);
+      label.textContent = open ? 'Show fewer' : 'See all 16 protections';
+      if (!open) list.scrollIntoView({ block: 'nearest' });
+      ScrollTrigger.refresh();
+    });
+  });
   $$('.sec-grid').forEach(grid => {
     ScrollTrigger.create({
       trigger: grid,
