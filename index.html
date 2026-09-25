@@ -41,8 +41,8 @@
 </script>
 <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/lenis.css?v=32">
-<link rel="stylesheet" href="assets/css/style.css?v=32">
+<link rel="stylesheet" href="assets/css/lenis.css?v=33">
+<link rel="stylesheet" href="assets/css/style.css?v=33">
 </head>
 <body>
 <!-- Intro loader -->
@@ -420,13 +420,13 @@
 
   <div class="container">
     <div class="tool-tabs" role="toolbar" aria-label="Filter tools by category">
-      <button class="tool-tab is-active" type="button" data-filter="all" aria-pressed="true">All <span>41</span></button>
+      <button class="tool-tab is-active" type="button" data-filter="all" aria-pressed="true">All <span>45</span></button>
       <button class="tool-tab" type="button" data-filter="lang" aria-pressed="false">Languages & Frameworks <span>15</span></button>
-      <button class="tool-tab" type="button" data-filter="server" aria-pressed="false">Servers & Hosting <span>7</span></button>
+      <button class="tool-tab" type="button" data-filter="server" aria-pressed="false">Servers & Hosting <span>9</span></button>
       <button class="tool-tab" type="button" data-filter="devops" aria-pressed="false">Tooling & DevOps <span>6</span></button>
       <button class="tool-tab" type="button" data-filter="data" aria-pressed="false">Databases & Backend <span>5</span></button>
       <button class="tool-tab" type="button" data-filter="ai" aria-pressed="false">AI Agents <span>4</span></button>
-      <button class="tool-tab" type="button" data-filter="design" aria-pressed="false">Design <span>1</span></button>
+      <button class="tool-tab" type="button" data-filter="design" aria-pressed="false">Design <span>3</span></button>
       <button class="tool-tab" type="button" data-filter="inspo" aria-pressed="false">Inspiration <span>3</span></button>
     </div>
     <ul class="tool-grid" id="toolGrid">
@@ -518,6 +518,14 @@
           <span class="tool-logo"><img src="assets/tools/nginx.svg" alt="" width="32" height="32" loading="lazy"></span>
           <span class="tool-text"><strong>NGINX</strong><small>Hosting</small></span>
         </li>
+        <li class="tool-card" data-cat="server" style="--brand:#000000">
+          <span class="tool-logo"><img src="assets/tools/vercel.svg" alt="" width="32" height="32" loading="lazy"></span>
+          <span class="tool-text"><strong>Vercel</strong><small>Hosting</small></span>
+        </li>
+        <li class="tool-card" data-cat="server" style="--brand:#4351E8">
+          <span class="tool-logo"><img src="assets/tools/render.svg" alt="" width="32" height="32" loading="lazy"></span>
+          <span class="tool-text"><strong>Render</strong><small>Hosting</small></span>
+        </li>
         <li class="tool-card" data-cat="devops" style="--brand:#F05032">
           <span class="tool-logo"><img src="assets/tools/git.svg" alt="" width="32" height="32" loading="lazy"></span>
           <span class="tool-text"><strong>Git</strong><small>DevOps</small></span>
@@ -581,6 +589,14 @@
         <li class="tool-card" data-cat="design" style="--brand:#00C4CC">
           <span class="tool-logo"><img src="assets/tools/canva.svg" alt="" width="32" height="32" loading="lazy"></span>
           <span class="tool-text"><strong>Canva</strong><small>Design</small></span>
+        </li>
+        <li class="tool-card" data-cat="design" style="--brand:#F24E1E">
+          <span class="tool-logo"><img src="assets/tools/figma.svg" alt="" width="32" height="32" loading="lazy"></span>
+          <span class="tool-text"><strong>Figma</strong><small>Design</small></span>
+        </li>
+        <li class="tool-card" data-cat="design" style="--brand:#D97757">
+          <span class="tool-logo"><img src="assets/tools/claude-design.svg" alt="" width="32" height="32" loading="lazy"></span>
+          <span class="tool-text"><strong>Claude Design</strong><small>Design</small></span>
         </li>
         <li class="tool-card" data-cat="inspo" style="--brand:#E60023">
           <span class="tool-logo"><img src="assets/tools/pinterest.svg" alt="" width="32" height="32" loading="lazy"></span>
@@ -855,7 +871,7 @@
     </div>
     <div class="process-list">
       <article class="process-row">
-        <div class="process-num" style="background-image:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=70'), url('me.webp');--pos:center;--size:auto 160%" aria-hidden="true">01</div>
+        <div class="process-num" style="background-image:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1400&q=70'), url('me.webp');--pos:center;--size:auto 160%" aria-hidden="true">01</div>
         <div class="process-body">
           <span class="process-tag">Step 01 &middot; First chat</span>
           <h3>Talk</h3>
@@ -864,7 +880,7 @@
         </div>
       </article>
       <article class="process-row">
-        <div class="process-num" style="background-image:url('https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1400&q=70'), url('Projects/EWAGA.webp');--pos:center;--size:auto 160%" aria-hidden="true">02</div>
+        <div class="process-num" style="background-image:url('https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1400&q=70'), url('Projects/EWAGA.webp');--pos:center;--size:auto 160%" aria-hidden="true">02</div>
         <div class="process-body">
           <span class="process-tag">Step 02 &middot; Before any work starts</span>
           <h3>Plan</h3>
@@ -1039,9 +1055,9 @@
   </div>
 </footer>
 
-<script src="assets/js/gsap.min.js?v=32"></script>
-<script src="assets/js/ScrollTrigger.min.js?v=32"></script>
-<script src="assets/js/lenis.min.js?v=32"></script>
-<script src="assets/js/main.js?v=32"></script>
+<script src="assets/js/gsap.min.js?v=33"></script>
+<script src="assets/js/ScrollTrigger.min.js?v=33"></script>
+<script src="assets/js/lenis.min.js?v=33"></script>
+<script src="assets/js/main.js?v=33"></script>
 </body>
 </html>
