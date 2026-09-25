@@ -6,16 +6,23 @@
 <meta name="description" content="Alfred Boakye, freelance developer and co-founder based in Ghana. I build fast, secure websites that help businesses grow.">
 <title>Alfred Boakye | Developer &amp; Co-Founder</title>
 <script>
-  try { var t = localStorage.getItem('ab-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
-  document.documentElement.classList.add('js');
+  (function (d) {
+    d.classList.add('js');
+    try { var t = localStorage.getItem('ab-theme'); if (t) d.dataset.theme = t; } catch (e) {}
+    try {
+      // Arriving from another page: start behind the curtain, skip the intro loader
+      if (sessionStorage.getItem('ab-enter') !== null) d.classList.add('is-entering');
+      if (sessionStorage.getItem('ab-visited')) d.classList.add('no-loader');
+      sessionStorage.setItem('ab-visited', '1');
+    } catch (e) {}
+  })(document.documentElement);
 </script>
 <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/lenis.css?v=4">
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/lenis.css?v=9">
+<link rel="stylesheet" href="assets/css/style.css?v=9">
 </head>
 <body>
-
 <!-- Intro loader -->
 <div class="loader" aria-hidden="true">
   <div class="loader-top">
@@ -28,12 +35,12 @@
   </div>
   <div class="loader-bar"><span></span></div>
 </div>
-
-<!-- Section transition overlay -->
+<!-- Page transition overlay -->
 <div class="curtain" aria-hidden="true">
   <div class="curtain-panel"></div>
   <span class="curtain-label" id="curtainLabel"></span>
 </div>
+<script>try { var l = sessionStorage.getItem('ab-enter'); if (l) document.getElementById('curtainLabel').textContent = l; } catch (e) {}</script>
 
 <!-- Scroll progress + custom cursor -->
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -41,20 +48,19 @@
 <div class="cursor-dot" aria-hidden="true"></div>
 
 <header class="nav">
-  <a class="nav-logo" href="#home" data-label="Home">Alfred<span>.</span></a>
+  <a class="nav-logo" href="index.html" data-label="Home">Alfred<span>.</span></a>
   <nav class="nav-links" aria-label="Primary">
-    <a href="#about" data-label="About">About</a>
-    <a href="#services" data-label="Services">Services</a>
-    <a href="#work" data-label="Work">Work</a>
-    <a href="#journey" data-label="Journey">Journey</a>
-    <a href="#faq" data-label="FAQ">FAQ</a>
+    <a href="index.html" data-label="Home" aria-current="page">Home</a>
+    <a href="about.html" data-label="About">About</a>
+    <a href="work.html" data-label="Work">Work</a>
+    <a href="contact.html" data-label="Contact">Contact</a>
   </nav>
   <div class="nav-right">
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
       <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
       <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2M12 20.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1.5 12h2M20.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
     </button>
-    <a class="nav-cta" href="#contact" data-label="Contact"><span>Let's talk</span></a>
+    <a class="nav-cta" href="contact.html" data-label="Contact"><span>Let's talk</span></a>
     <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span>
     </button>
@@ -63,12 +69,10 @@
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <nav aria-label="Mobile">
-    <a href="#about" data-label="About"><small>01</small>About</a>
-    <a href="#services" data-label="Services"><small>02</small>Services</a>
-    <a href="#work" data-label="Work"><small>03</small>Work</a>
-    <a href="#journey" data-label="Journey"><small>04</small>Journey</a>
-    <a href="#faq" data-label="FAQ"><small>05</small>FAQ</a>
-    <a href="#contact" data-label="Contact"><small>06</small>Contact</a>
+    <a href="index.html" data-label="Home" aria-current="page"><small>01</small>Home</a>
+    <a href="about.html" data-label="About"><small>02</small>About</a>
+    <a href="work.html" data-label="Work"><small>03</small>Work</a>
+    <a href="contact.html" data-label="Contact"><small>04</small>Contact</a>
   </nav>
   <div class="mobile-menu-foot">
     <a href="mailto:alfredwalker180@gmail.com">alfredwalker180@gmail.com</a>
@@ -83,7 +87,7 @@
   <span class="section-meter-name" id="meterName">Intro</span>
 </aside>
 
-<main>
+<main id="top">
 
 <section class="hero" id="home" data-name="Intro">
   <div class="hero-bg-word" aria-hidden="true">Portfolio</div>
@@ -101,7 +105,7 @@
     <img src="me.png" width="1280" height="1280" alt="Portrait of Alfred Boakye" fetchpriority="high">
   </div>
 
-  <a class="hero-badge" href="#work" data-label="Work" aria-label="See my work">
+  <a class="hero-badge" href="work.html" data-label="Work" aria-label="See my work">
     <svg class="badge-ring" viewBox="0 0 100 100" aria-hidden="true">
       <defs><path id="circlePath" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
       <text><textPath href="#circlePath" textLength="236" lengthAdjust="spacing">See my work &bull; See my work &bull;</textPath></text>
@@ -196,89 +200,6 @@
   </div>
 </section>
 
-<section class="work" id="work" data-name="Work">
-  <div class="work-pin">
-    <div class="work-head container">
-      <div>
-        <span class="eyebrow"><span class="dot"></span>Selected work</span>
-        <h2 class="section-title"><span class="reveal-line"><span>Recent projects</span></span></h2>
-      </div>
-      <div class="work-counter" aria-hidden="true">
-        <span id="workCurrent">01</span><span class="sep">/</span><span>11</span>
-      </div>
-    </div>
-
-    <div class="work-track" id="workTrack">
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/CEANA-REDESIGNED_WEBSITE.webp" alt="CEANA website redesign" loading="lazy"></div>
-        <div class="work-meta"><span>01</span><span>Website Redesign</span></div>
-        <h3>CEANA</h3>
-        <p>Turned an old, outdated website into a clean, modern and engaging experience.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/EruditeAcademy.webp" alt="Erudite Academy learning platform" loading="lazy"></div>
-        <div class="work-meta"><span>02</span><span>Learning Platform</span></div>
-        <h3>Erudite Academy</h3>
-        <p>An online learning platform where students build new skills and earn certificates, running smoothly for a large community.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/TECHHUB_EMPLOYEE_PORTAL.webp" alt="TechHub employee portal" loading="lazy"></div>
-        <div class="work-meta"><span>03</span><span>Staff Portal</span></div>
-        <h3>TechHub</h3>
-        <p>The employee portal for one of Ghana's largest tech companies.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/SKILLS BRIDGE FOUNDATION.webp" alt="Skills Bridge Foundation website" loading="lazy"></div>
-        <div class="work-meta"><span>04</span><span>Non-profit</span></div>
-        <h3>Skills Bridge</h3>
-        <p>A fast, secure website for a foundation that connects young people to new skills.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/POS_SYSTEM.webp" alt="Point of sale system" loading="lazy"></div>
-        <div class="work-meta"><span>05</span><span>Business Tool</span></div>
-        <h3>Sales &amp; Stock System</h3>
-        <p>A checkout and stock system that helps shops track every sale and item in one place.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/EWAGA.webp" alt="EWAGA community website" loading="lazy"></div>
-        <div class="work-meta"><span>06</span><span>Community</span></div>
-        <h3>EWAGA</h3>
-        <p>The official home of the Ewe Association of Georgia, with memberships, events and community news.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/GESA.webp" alt="GESA student website" loading="lazy"></div>
-        <div class="work-meta"><span>07</span><span>Student Association</span></div>
-        <h3>GESA</h3>
-        <p>A student portal at UMaT giving members easy, secure access to their resources.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/GHASS-G.webp" alt="GHASS-G website" loading="lazy"></div>
-        <div class="work-meta"><span>08</span><span>Training</span></div>
-        <h3>GHASS-G</h3>
-        <p>A course catalogue and certification website for the Global Health and Safety Group.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/GHSIC.webp" alt="GHSIC website" loading="lazy"></div>
-        <div class="work-meta"><span>09</span><span>Careers</span></div>
-        <h3>GHSIC</h3>
-        <p>Connecting students across Ghana with internships and career training.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/hopsausa-canada.webp" alt="HOPSA USA-Canada website" loading="lazy"></div>
-        <div class="work-meta"><span>10</span><span>Alumni Network</span></div>
-        <h3>HOPSA USA-Canada</h3>
-        <p>A members' website helping alumni stay in touch and network across two countries.</p>
-      </article>
-      <article class="work-card">
-        <div class="work-media"><img src="Projects/HOMELAB.jpg" alt="Private server setup" loading="lazy"></div>
-        <div class="work-meta"><span>11</span><span>Personal Project</span></div>
-        <h3>Private Server Lab</h3>
-        <p>My own server at home, hosting a website and streaming service, which I use to practise keeping systems safe.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track" id="marqueeTrack">
     <span>Web Design</span><i></i><span>Development</span><i></i><span>Redesigns</span><i></i><span>Online Security</span><i></i><span>Business Websites</span><i></i>
@@ -286,106 +207,16 @@
   </div>
 </div>
 
-<section class="journey" id="journey" data-name="Journey">
-  <div class="container">
-    <div class="section-head split">
-      <span class="eyebrow"><span class="dot"></span>Journey</span>
-      <h2 class="section-title"><span class="reveal-line"><span>A few milestones</span></span><span class="reveal-line"><span>so far.</span></span></h2>
-    </div>
-
-    <div class="timeline">
-      <span class="timeline-line"><span id="timelineFill"></span></span>
-      <div class="timeline-row">
-        <span class="timeline-year">2024 &ndash; Now</span>
-        <div>
-          <h3>Co-Founder, Erudite Africa Network</h3>
-          <p>Building an online learning platform that makes skills training and certificates accessible across Africa.</p>
-        </div>
-      </div>
-      <div class="timeline-row">
-        <span class="timeline-year">2024 &ndash; Now</span>
-        <div>
-          <h3>University Student &amp; Freelancer</h3>
-          <p>Studying online security while building websites and systems for businesses and organisations.</p>
-        </div>
-      </div>
-      <div class="timeline-row">
-        <span class="timeline-year">2020 &ndash; 2023</span>
-        <div>
-          <h3>Obuasi Senior High Technical School</h3>
-          <p>Studied IT and built the official website for the school before graduating.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="process" id="process" data-name="Process">
-  <div class="container">
-    <div class="section-head split">
-      <span class="eyebrow"><span class="dot"></span>How we work together</span>
-      <h2 class="section-title"><span class="reveal-line"><span>Simple, clear</span></span><span class="reveal-line"><span>four steps.</span></span></h2>
-    </div>
-    <div class="steps">
-      <div class="step"><span>01</span><h3>Talk</h3><p>We chat about your business, your customers and what you want the website to do.</p></div>
-      <div class="step"><span>02</span><h3>Plan</h3><p>I map out the pages, the look and the timeline, and share it with you before any work starts.</p></div>
-      <div class="step"><span>03</span><h3>Build</h3><p>I design and build your website, with regular updates so you can see progress.</p></div>
-      <div class="step"><span>04</span><h3>Launch</h3><p>We go live smoothly, and I stay around to make sure everything runs well.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="faq" id="faq" data-name="FAQ">
-  <div class="container faq-layout">
-    <div class="section-head">
-      <span class="eyebrow"><span class="dot"></span>FAQ</span>
-      <h2 class="section-title"><span class="reveal-line"><span>Good</span></span><span class="reveal-line"><span>questions.</span></span></h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-trigger" type="button" aria-expanded="false">
-          <span>My website is slow and outdated. Why should I upgrade?</span><i></i>
-        </button>
-        <div class="faq-answer"><p>A slow website turns visitors away before they ever see what you offer. A fast, modern one keeps people interested, looks professional and helps turn visitors into paying customers.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-trigger" type="button" aria-expanded="false">
-          <span>How do I know my customers' information is safe?</span><i></i>
-        </button>
-        <div class="faq-answer"><p>I build with safety in mind from day one, so logins, forms and payments are protected. Your customers can trust you with their details.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-trigger" type="button" aria-expanded="false">
-          <span>Will my website crash if lots of people visit at once?</span><i></i>
-        </button>
-        <div class="faq-answer"><p>No. The websites I build are made to handle busy periods, like sales and launches, so you stay online when it matters most.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-trigger" type="button" aria-expanded="false">
-          <span>Will the work disrupt my current website?</span><i></i>
-        </button>
-        <div class="faq-answer"><p>Not at all. I build and test everything privately first, then switch over smoothly once you are happy, so your visitors never notice a thing.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contact" data-name="Contact">
+<section class="contact cta" id="cta" data-name="Contact">
   <div class="container">
     <span class="eyebrow"><span class="dot"></span>Have a project in mind?</span>
     <h2 class="contact-title">
       <span class="reveal-line"><span>Let's work</span></span>
       <span class="reveal-line"><span class="outline">together</span></span>
     </h2>
-
-    <a class="contact-email" href="mailto:alfredwalker180@gmail.com" data-cursor="Email">
-      alfredwalker180@gmail.com <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-
     <div class="contact-links">
-      <a href="https://wa.me/233535594525" target="_blank" rel="noopener noreferrer" class="pill"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg> WhatsApp</a>
-      <a href="tel:+233535594525" class="pill"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> 053 559 4525</a>
-      <button type="button" class="pill" id="copyEmail"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> <span>Copy email</span></button>
+      <a href="contact.html" data-label="Contact" class="pill pill-solid">Start a project <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="mailto:alfredwalker180@gmail.com" class="pill">alfredwalker180@gmail.com</a>
     </div>
   </div>
 </section>
@@ -395,14 +226,19 @@
 <footer class="footer">
   <div class="container footer-inner">
     <span>&copy; 2026 Alfred Boakye</span>
-    <span>Ghana / Remote</span>
-    <a href="#home" data-label="Home" class="to-top">Back to top <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="index.html" data-label="Home">Home</a>
+      <a href="about.html" data-label="About">About</a>
+      <a href="work.html" data-label="Work">Work</a>
+      <a href="contact.html" data-label="Contact">Contact</a>
+    </nav>
+    <a href="#top" class="to-top">Back to top <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
   </div>
 </footer>
 
-<script src="assets/js/gsap.min.js?v=4"></script>
-<script src="assets/js/ScrollTrigger.min.js?v=4"></script>
-<script src="assets/js/lenis.min.js?v=4"></script>
-<script src="assets/js/main.js?v=4"></script>
+<script src="assets/js/gsap.min.js?v=9"></script>
+<script src="assets/js/ScrollTrigger.min.js?v=9"></script>
+<script src="assets/js/lenis.min.js?v=9"></script>
+<script src="assets/js/main.js?v=9"></script>
 </body>
 </html>
