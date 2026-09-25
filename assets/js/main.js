@@ -389,8 +389,8 @@ function initReveals() {
   batchUp('.about-grid > *');
   batchUp('.service', { y: 40 });
   batchUp('.process-body', { y: 40 });
-  batchUp('.tool-group h3', { y: 20 });
-  batchUp('.tool', { y: 24 });
+  batchUp('.tool-tab', { y: 16 });
+  batchUp('.tool-card', { y: 30 });
   batchUp('.faq-item', { y: 30 });
   batchUp('.contact-email, .contact-links', { y: 30 });
 
@@ -438,6 +438,50 @@ function initProcess() {
         scrollTrigger: { trigger: row, start: 'top 75%' }
       });
     }
+  });
+}
+
+// Toolbox: category filter and cards that tilt and glow toward the mouse
+function initToolbox() {
+  const grid = $('#toolGrid');
+  if (!grid) return;
+  const cards = $$('.tool-card', grid);
+  const tabs = $$('.tool-tab');
+
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    const filter = tab.dataset.filter;
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-pressed', String(on));
+    });
+    const shown = [];
+    cards.forEach(card => {
+      const match = filter === 'all' || card.dataset.cat === filter || card.classList.contains('tool-card-more');
+      card.classList.toggle('is-hidden', !match);
+      if (match) shown.push(card);
+    });
+    gsap.fromTo(shown, { opacity: 0, y: 18, scale: 0.96 }, {
+      opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.025, ease: 'expo.out', overwrite: true
+    });
+    ScrollTrigger.refresh();
+  }));
+
+  if (!finePointer) return;
+  cards.forEach(card => {
+    const rx = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power3.out' });
+    const ry = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power3.out' });
+    gsap.set(card, { transformPerspective: 700 });
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--mx', `${x * 100}%`);
+      card.style.setProperty('--my', `${y * 100}%`);
+      ry((x - 0.5) * 12);
+      rx((0.5 - y) * 12);
+    });
+    card.addEventListener('mouseleave', () => { rx(0); ry(0); });
   });
 }
 
@@ -723,6 +767,7 @@ function init() {
     safe(initProcess);
     safe(initMarquee);
   }
+  safe(initToolbox);
   safe(initGitHub);
   safe(initNavTheme);
   safe(initScrollMap);
