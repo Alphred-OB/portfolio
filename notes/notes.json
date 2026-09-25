@@ -1,23 +1,79 @@
 [
   {
+    "slug": "ai-without-the-ai-look",
+    "title": "How to use AI to design and build your web app without it looking like AI",
+    "date": "2026-09-24",
+    "tags": [
+      "Design",
+      "AI"
+    ],
+    "summary": "AI makes me faster, but I never let it make the design decisions. Here is how to get the speed without the generic look."
+  },
+  {
+    "slug": "what-is-aeo",
+    "title": "What AEO is and why your business needs it",
+    "date": "2026-09-22",
+    "tags": [
+      "SEO",
+      "AI"
+    ],
+    "summary": "People are asking ChatGPT for recommendations instead of searching. A plain guide to getting your business into the answer."
+  },
+  {
     "slug": "growing-past-thousands-of-users",
     "title": "Keeping a platform fast as it grows past thousands of users",
     "date": "2026-09-20",
-    "tags": ["Performance", "Scaling"],
+    "tags": [
+      "Performance"
+    ],
     "summary": "The habits that keep a system quick when it goes from hundreds to thousands of users."
   },
   {
     "slug": "security-is-not-an-add-on",
     "title": "Security is not an add-on",
     "date": "2026-09-12",
-    "tags": ["Security"],
+    "tags": [
+      "Security"
+    ],
     "summary": "Why protection has to be built in from day one, and what I include in every project by default."
   },
   {
     "slug": "website-web-app-or-pwa",
     "title": "Website, web app or PWA: which one does your business need?",
     "date": "2026-09-05",
-    "tags": ["Planning", "Web apps"],
+    "tags": [
+      "Planning"
+    ],
     "summary": "A plain language guide to choosing between a website, a web app, a PWA and a dedicated app."
+  },
+  {
+    "slug": "why-ai-built-apps-break",
+    "title": "Why AI built apps break when real customers arrive",
+    "date": "2026-08-29",
+    "tags": [
+      "AI",
+      "Planning"
+    ],
+    "summary": "The demo is not the product. What AI leaves out, and what it takes to turn a prototype into something people can trust."
+  },
+  {
+    "slug": "payments-without-double-charges",
+    "title": "Taking payments without double charges or frozen accounts",
+    "date": "2026-08-22",
+    "tags": [
+      "Payments",
+      "Security"
+    ],
+    "summary": "The payment mistakes that cost real money, and how I handle each one, explained without the jargon."
+  },
+  {
+    "slug": "never-really-delete-customer-data",
+    "title": "Why you should never really delete customer data",
+    "date": "2026-08-15",
+    "tags": [
+      "Security",
+      "Planning"
+    ],
+    "summary": "How one delete button can wipe a business's records, and the simple rules that keep data safe and private."
   }
 ]

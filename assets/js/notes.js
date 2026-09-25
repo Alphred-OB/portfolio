@@ -84,6 +84,8 @@
             ${next && next !== note ? `<a class="note-next" href="notes.html?n=${encodeURIComponent(next.slug)}" data-note-link data-label="Note"><small>Next note</small><strong>${esc(next.title)}</strong>${arrow}</a>` : ''}
             <a class="pill pill-solid" href="contact.html" data-note-link data-label="Contact">Have a project in mind? Let's talk ${arrow}</a>
           </footer>`;
+        view.querySelectorAll('.note-body a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener noreferrer'; });
+        view.querySelectorAll('.note-body a[href$=".html"]').forEach(a => { a.dataset.noteLink = ''; a.dataset.label = 'Contact'; });
         bindLinks(view);
         if (window.gsap) gsap.from(view.children, { opacity: 0, y: 30, duration: 1, stagger: 0.08, ease: 'expo.out', delay: 0.3 });
         refresh();
