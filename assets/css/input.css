@@ -1214,6 +1214,7 @@ html[data-theme="dark"] .timeline-logo { padding: 4px 8px; border-radius: 8px; b
   font-size: 0.8rem;
   color: var(--text-3);
 }
+.gh-swipe { display: none; margin-right: auto; }
 .gh-legend i:first-child { margin-left: 6px; }
 .gh-legend i:last-child { margin-right: 6px; }
 .gh-fallback { margin: 20px 0 0; color: var(--text-2); }
@@ -2096,6 +2097,13 @@ body.is-note .notes { padding-top: clamp(120px, 16vh, 170px); }
 }
 
 @media (max-width: 820px) {
+  .gh-graph-wrap { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .gh-graph-wrap::-webkit-scrollbar { display: none; }
+  .gh-graph, .gh-months { min-width: 780px; }
+  .gh-graph { gap: 3px; }
+  .gh-months { gap: 0 3px; }
+  .gh-days { gap: 3px; }
+  .gh-swipe { display: inline; }
   .sec-list, .case-cards, .cases-head { grid-template-columns: 1fr; }
   .cases-intro { justify-self: start; }
   .gh-stats { gap: 14px; }
