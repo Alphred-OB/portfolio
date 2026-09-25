@@ -388,7 +388,9 @@ function initReveals() {
   };
   batchUp('.about-grid > *');
   batchUp('.service', { y: 40 });
-  batchUp('.step', { y: 60 });
+  batchUp('.process-body', { y: 40 });
+  batchUp('.tool-tab', { y: 16 });
+  batchUp('.tool-card', { y: 30 });
   batchUp('.faq-item', { y: 30 });
   batchUp('.contact-email, .contact-links', { y: 30 });
 
@@ -409,6 +411,155 @@ function initReveals() {
       })
     });
   });
+}
+
+// Process: each big numeral rises in and its image drifts as you scroll
+function initProcess() {
+  $$('.process-row').forEach(row => {
+    const num = $('.process-num', row);
+    const rule = $('.process-rule', row);
+    gsap.from(num, {
+      yPercent: 30,
+      opacity: 0,
+      duration: 1.3,
+      ease: 'expo.out',
+      scrollTrigger: { trigger: row, start: 'top 85%' }
+    });
+    gsap.fromTo(num, { backgroundPositionY: '20%' }, {
+      backgroundPositionY: '80%',
+      ease: 'none',
+      scrollTrigger: { trigger: row, start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+    if (rule) {
+      gsap.from(rule, {
+        scaleX: 0,
+        duration: 1,
+        ease: 'expo.out',
+        scrollTrigger: { trigger: row, start: 'top 75%' }
+      });
+    }
+  });
+}
+
+// Toolbox: category filter and cards that tilt and glow toward the mouse
+function initToolbox() {
+  const grid = $('#toolGrid');
+  if (!grid) return;
+  const cards = $$('.tool-card', grid);
+  const tabs = $$('.tool-tab');
+
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    const filter = tab.dataset.filter;
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-pressed', String(on));
+    });
+    const shown = [];
+    cards.forEach(card => {
+      const match = filter === 'all' || card.dataset.cat === filter || card.classList.contains('tool-card-more');
+      card.classList.toggle('is-hidden', !match);
+      if (match) shown.push(card);
+    });
+    gsap.fromTo(shown, { opacity: 0, y: 18, scale: 0.96 }, {
+      opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.025, ease: 'expo.out', overwrite: true
+    });
+    ScrollTrigger.refresh();
+  }));
+
+  if (!finePointer) return;
+  cards.forEach(card => {
+    const rx = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power3.out' });
+    const ry = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power3.out' });
+    gsap.set(card, { transformPerspective: 700 });
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--mx', `${x * 100}%`);
+      card.style.setProperty('--my', `${y * 100}%`);
+      ry((x - 0.5) * 12);
+      rx((0.5 - y) * 12);
+    });
+    card.addEventListener('mouseleave', () => { rx(0); ry(0); });
+  });
+}
+
+// GitHub: live contribution graph and streaks from a public contributions API
+const GITHUB_USER = 'Alphred-OB';
+
+function streaks(days) {
+  let longest = 0, run = 0;
+  days.forEach(d => { run = d.count > 0 ? run + 1 : 0; longest = Math.max(longest, run); });
+  // Current streak counts back from today; an empty today does not break it yet
+  let current = 0;
+  let i = days.length - 1;
+  if (i >= 0 && days[i].count === 0) i--;
+  for (; i >= 0 && days[i].count > 0; i--) current++;
+  return { current, longest };
+}
+
+function initGitHub() {
+  const section = $('#github');
+  if (!section) return;
+  const graph = $('#ghGraph');
+  const setStat = (key, value) => {
+    const el = $(`[data-gh="${key}"]`, section);
+    const obj = { v: 0 };
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 92%',
+      once: true,
+      onEnter: () => gsap.to(obj, { v: value, duration: 1.6, ease: 'power3.out', onUpdate: () => { el.textContent = Math.round(obj.v).toLocaleString(); } })
+    });
+  };
+  const offline = () => { section.classList.add('is-offline'); $('#ghFallback').hidden = false; ScrollTrigger.refresh(); };
+
+  const ctrl = 'AbortController' in window ? new AbortController() : null;
+  const timer = setTimeout(() => ctrl && ctrl.abort(), 8000);
+  fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USER}?y=last`, ctrl ? { signal: ctrl.signal } : {})
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      clearTimeout(timer);
+      const today = new Date().toISOString().slice(0, 10);
+      const days = (data.contributions || []).filter(d => d.date <= today);
+      if (!days.length) throw new Error('empty');
+
+      // Pad the first week so columns start on Sunday, like GitHub
+      const pad = new Date(days[0].date + 'T00:00:00').getDay();
+      const frag = document.createDocumentFragment();
+      for (let p = 0; p < pad; p++) { const i = document.createElement('i'); i.style.visibility = 'hidden'; frag.appendChild(i); }
+      days.forEach(d => {
+        const i = document.createElement('i');
+        i.dataset.l = d.level;
+        i.title = `${d.count} contribution${d.count === 1 ? '' : 's'} on ${d.date}`;
+        frag.appendChild(i);
+      });
+      graph.appendChild(frag);
+      const wrap = graph.parentElement;
+      wrap.scrollLeft = wrap.scrollWidth;
+
+      const total = data.total && typeof data.total.lastYear === 'number'
+        ? data.total.lastYear
+        : days.reduce((sum, d) => sum + d.count, 0);
+      const s = streaks(days);
+      setStat('total', total);
+      setStat('current', s.current);
+      setStat('longest', s.longest);
+
+      if (!reduced) {
+        gsap.from($$('i', graph), {
+          opacity: 0,
+          scale: 0.4,
+          duration: 0.5,
+          ease: 'power2.out',
+          stagger: { amount: 1.2, grid: 'auto', from: 'start' },
+          scrollTrigger: { trigger: graph, start: 'top 88%' }
+        });
+      }
+      ScrollTrigger.refresh();
+    })
+    .catch(offline);
 }
 
 // Journey: line fills and a dot travels down it with the scroll; milestones light up as it passes
@@ -613,8 +764,11 @@ function init() {
     safe(initReveals);
     safe(initWork);
     safe(initJourney);
+    safe(initProcess);
     safe(initMarquee);
   }
+  safe(initToolbox);
+  safe(initGitHub);
   safe(initNavTheme);
   safe(initScrollMap);
   ScrollTrigger.refresh();
