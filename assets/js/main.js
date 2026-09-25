@@ -1,4 +1,5 @@
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 const root = document.documentElement;
 // Motion is the core of this site, so it plays even when the OS asks for reduced motion
@@ -19,10 +20,11 @@ const introDelay = el => (entering && el.getBoundingClientRect().top < window.in
 ------------------------------------------------------------ */
 function initLenis() {
   if (reduced || typeof Lenis === 'undefined') return;
+  // A higher lerp keeps smooth scrolling close to the wheel so it never feels floaty
   lenis = new Lenis({
-    duration: 1.15,
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true
+    lerp: 0.14,
+    smoothWheel: true,
+    wheelMultiplier: 1
   });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
@@ -425,11 +427,6 @@ function initProcess() {
       ease: 'expo.out',
       scrollTrigger: { trigger: row, start: 'top 85%' }
     });
-    gsap.fromTo(num, { backgroundPositionY: '20%' }, {
-      backgroundPositionY: '80%',
-      ease: 'none',
-      scrollTrigger: { trigger: row, start: 'top bottom', end: 'bottom top', scrub: true }
-    });
     if (rule) {
       gsap.from(rule, {
         scaleX: 0,
@@ -439,6 +436,13 @@ function initProcess() {
       });
     }
   });
+}
+
+// Pause the looping logo rows while they are off screen
+function initRails() {
+  const rails = $('.logo-rails');
+  if (!rails) return;
+  new IntersectionObserver(([entry]) => rails.classList.toggle('is-paused', !entry.isIntersecting)).observe(rails);
 }
 
 // Toolbox: category filter and cards that tilt and glow toward the mouse
@@ -548,12 +552,11 @@ function initGitHub() {
       setStat('longest', s.longest);
 
       if (!reduced) {
-        gsap.from($$('i', graph), {
+        gsap.from(graph, {
           opacity: 0,
-          scale: 0.4,
-          duration: 0.5,
-          ease: 'power2.out',
-          stagger: { amount: 1.2, grid: 'auto', from: 'start' },
+          y: 20,
+          duration: 1,
+          ease: 'expo.out',
           scrollTrigger: { trigger: graph, start: 'top 88%' }
         });
       }
@@ -568,7 +571,9 @@ function initJourney() {
   if (!timeline) return;
   const range = { trigger: timeline, start: 'top 55%', end: 'bottom 55%', scrub: 0.6 };
   gsap.to('#timelineFill', { scaleY: 1, ease: 'none', scrollTrigger: range });
-  gsap.fromTo('#timelineDot', { top: '0%' }, { top: '100%', ease: 'none', scrollTrigger: { ...range } });
+  // Move the dot with a transform (not "top") so it never triggers layout while scrolling
+  const axis = $('.timeline-axis', timeline);
+  gsap.fromTo('#timelineDot', { y: 0 }, { y: () => axis.offsetHeight, ease: 'none', scrollTrigger: { ...range, invalidateOnRefresh: true } });
 
   $$('.timeline-item', timeline).forEach(item => {
     ScrollTrigger.create({
@@ -647,15 +652,21 @@ function initMarquee() {
   if (!track) return;
   let x = 0;
   let dir = 1;
+  let half = track.scrollWidth / 2;
+  let visible = false;
+  // Measure once (and on resize) instead of every frame, and only run while on screen
+  window.addEventListener('resize', debounce(() => { half = track.scrollWidth / 2; }, 200));
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(track);
+  const setX = gsap.quickSetter(track, 'x', 'px');
   gsap.ticker.add(() => {
-    const half = track.scrollWidth / 2;
+    if (!visible) return;
     const v = lenis ? lenis.velocity : 0;
     if (v > 0.5) dir = 1;
     else if (v < -0.5) dir = -1;
     x -= (0.6 + Math.min(Math.abs(v) * 0.25, 12)) * dir;
     if (x <= -half) x += half;
     if (x > 0) x -= half;
-    gsap.set(track, { x });
+    setX(x);
   });
 }
 
@@ -767,6 +778,7 @@ function init() {
     safe(initProcess);
     safe(initMarquee);
   }
+  safe(initRails);
   safe(initToolbox);
   safe(initGitHub);
   safe(initNavTheme);
