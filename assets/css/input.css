@@ -1154,7 +1154,6 @@ html.is-entering .curtain-label { opacity: 1; }
     text-align: left;
   }
   .timeline-item::before, .timeline-item:nth-of-type(even)::before { left: 3px; right: auto; top: 44px; }
-  .timeline-dot { left: 8.5px; }
   .timeline-card { display: block; padding: 22px; }
   .faq-layout { grid-template-columns: 1fr; }
 }
