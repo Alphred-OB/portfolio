@@ -1048,73 +1048,103 @@ html[data-theme="dark"] .timeline-logo { padding: 4px 8px; border-radius: 8px; b
 .process-body p { margin: 0; color: var(--text-2); font-size: 1.02rem; }
 
 /* ------------------------------------------------------------
-   GitHub activity
+   Connect (GitHub, LinkedIn, WhatsApp)
 ------------------------------------------------------------ */
-.github { padding: clamp(90px, 12vw, 160px) 0; }
-.gh-card {
-  padding: clamp(24px, 4vw, 48px);
+.connect { padding: clamp(90px, 12vw, 160px) 0; }
+.social-panels { display: flex; gap: 16px; min-height: 420px; }
+.social-panel {
+  position: relative;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  min-width: 0;
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: 24px;
   border: 1px solid var(--line);
-  border-radius: 12px;
   background: var(--surface);
+  overflow: hidden;
+  isolation: isolate;
+  transition: flex-grow 0.7s var(--ease), border-color 0.4s, color 0.4s;
 }
-.gh-profile { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.gh-profile img { width: 64px; height: 64px; border-radius: 50%; background: var(--bg-2); }
-.gh-name { display: flex; flex-direction: column; margin-right: auto; }
-.gh-name strong { font-size: 1.15rem; }
-.gh-name span { color: var(--text-2); font-size: 0.95rem; }
-.gh-stats {
+/* Brand colour spreads out from wherever the mouse enters */
+.social-fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--brand);
+  clip-path: circle(0% at var(--x, 50%) var(--y, 50%));
+  transition: clip-path 0.7s var(--ease);
+}
+.social-panel:hover, .social-panel:focus-visible { color: #fff; border-color: var(--brand); }
+.social-panel:hover .social-fill, .social-panel:focus-visible .social-fill { clip-path: circle(150% at var(--x, 50%) var(--y, 50%)); }
+@media (hover: hover) and (min-width: 821px) {
+  .social-panel:hover { flex-grow: 1.6; }
+}
+.social-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.social-icon {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin: clamp(28px, 4vw, 44px) 0;
-  padding: 28px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  transition: transform 0.7s var(--ease);
 }
-.gh-stat strong {
-  display: block;
+.social-icon img { width: 34px; height: 34px; }
+.social-panel:hover .social-icon { transform: rotate(-8deg) scale(1.08); }
+.social-arrow {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  transition: transform 0.6s var(--ease), opacity 0.3s, background-color 0.3s, color 0.3s;
+}
+.social-panel:hover .social-arrow { opacity: 1; transform: rotate(45deg); background: #fff; color: var(--brand); border-color: #fff; }
+.social-body { display: flex; flex-direction: column; gap: 6px; }
+.social-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.social-handle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
   line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.gh-stat span { font-size: 0.9rem; color: var(--text-2); }
-.gh-graph-wrap { overflow: hidden; padding-bottom: 6px; }
-.gh-graph {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(7, auto);
-  grid-auto-columns: 1fr;
-  gap: 4px;
-  width: 100%;
-  min-width: 720px;
-  min-height: 90px;
-}
-.gh-graph i { display: block; aspect-ratio: 1; border-radius: 3px; background: var(--line); }
-.gh-legend i {
-  display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-  background: var(--line);
-}
-.gh-graph i[data-l="1"], .gh-legend i[data-l="1"] { background: color-mix(in srgb, var(--accent) 30%, transparent); }
-.gh-graph i[data-l="2"], .gh-legend i[data-l="2"] { background: color-mix(in srgb, var(--accent) 55%, transparent); }
-.gh-graph i[data-l="3"], .gh-legend i[data-l="3"] { background: color-mix(in srgb, var(--accent) 80%, transparent); }
-.gh-graph i[data-l="4"], .gh-legend i[data-l="4"] { background: var(--accent); }
-.gh-legend {
-  display: flex;
+.social-text { max-width: 360px; margin-top: 6px; color: var(--text-2); transition: color 0.4s; }
+.social-panel:hover .social-text { color: rgba(255, 255, 255, 0.85); }
+.social-cta {
+  display: inline-flex;
+  align-self: flex-start;
   align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-  margin-top: 14px;
-  font-size: 0.8rem;
-  color: var(--text-3);
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.4s, color 0.4s, transform 0.6s var(--ease);
 }
-.gh-legend i:first-child { margin-left: 6px; }
-.gh-legend i:last-child { margin-right: 6px; }
-.gh-fallback { margin: 20px 0 0; color: var(--text-2); }
-.github.is-offline .gh-stats, .github.is-offline .gh-graph-wrap, .github.is-offline .gh-legend { display: none; }
+.social-panel:hover .social-cta { background: #fff; color: var(--brand); transform: translateX(6px); }
+/* Touch screens cannot hover, so show each brand colour on the button instead */
+@media (hover: none) {
+  .social-cta { background: var(--brand); color: #fff; }
+}
 
 /* ------------------------------------------------------------
    Toolbox
@@ -1431,9 +1461,8 @@ html[data-theme="dark"] .timeline-logo { padding: 4px 8px; border-radius: 8px; b
   .tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .tool-card { padding: 12px; gap: 10px; }
   .tool-card .tool-logo { width: 40px; height: 40px; }
-  .gh-stats { grid-template-columns: 1fr 1fr; }
-  .gh-graph-wrap { overflow-x: auto; scrollbar-width: thin; }
-  .gh-link { width: 100%; justify-content: center; }
+  .social-panels { flex-direction: column; min-height: 0; }
+  .social-panel { flex: none; min-height: 0; gap: 22px; }
 }
 
 @media (max-width: 560px) {

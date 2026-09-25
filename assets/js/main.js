@@ -489,80 +489,37 @@ function initToolbox() {
   });
 }
 
-// GitHub: live contribution graph and streaks from a public contributions API
-const GITHUB_USER = 'Alphred-OB';
-
-function streaks(days) {
-  let longest = 0, run = 0;
-  days.forEach(d => { run = d.count > 0 ? run + 1 : 0; longest = Math.max(longest, run); });
-  // Current streak counts back from today; an empty today does not break it yet
-  let current = 0;
-  let i = days.length - 1;
-  if (i >= 0 && days[i].count === 0) i--;
-  for (; i >= 0 && days[i].count > 0; i--) current++;
-  return { current, longest };
-}
-
-function initGitHub() {
-  const section = $('#github');
-  if (!section) return;
-  const graph = $('#ghGraph');
-  const setStat = (key, value) => {
-    const el = $(`[data-gh="${key}"]`, section);
-    const obj = { v: 0 };
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 92%',
-      once: true,
-      onEnter: () => gsap.to(obj, { v: value, duration: 1.6, ease: 'power3.out', onUpdate: () => { el.textContent = Math.round(obj.v).toLocaleString(); } })
+// Connect panels: the brand colour spreads from where the mouse enters, and the card leans toward it
+function initSocial() {
+  const panels = $$('.social-panel');
+  if (!panels.length) return;
+  panels.forEach(panel => {
+    const place = e => {
+      const r = panel.getBoundingClientRect();
+      panel.style.setProperty('--x', `${((e.clientX - r.left) / r.width) * 100}%`);
+      panel.style.setProperty('--y', `${((e.clientY - r.top) / r.height) * 100}%`);
+    };
+    panel.addEventListener('mouseenter', place);
+    panel.addEventListener('mouseleave', place);
+    if (!finePointer) return;
+    const icon = $('.social-icon', panel);
+    const ix = gsap.quickTo(icon, 'x', { duration: 0.6, ease: 'power3.out' });
+    const iy = gsap.quickTo(icon, 'y', { duration: 0.6, ease: 'power3.out' });
+    panel.addEventListener('mousemove', e => {
+      const r = panel.getBoundingClientRect();
+      ix(((e.clientX - r.left) / r.width - 0.5) * 24);
+      iy(((e.clientY - r.top) / r.height - 0.5) * 24);
     });
-  };
-  const offline = () => { section.classList.add('is-offline'); $('#ghFallback').hidden = false; ScrollTrigger.refresh(); };
-
-  const ctrl = 'AbortController' in window ? new AbortController() : null;
-  const timer = setTimeout(() => ctrl && ctrl.abort(), 8000);
-  fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USER}?y=last`, ctrl ? { signal: ctrl.signal } : {})
-    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(data => {
-      clearTimeout(timer);
-      const today = new Date().toISOString().slice(0, 10);
-      const days = (data.contributions || []).filter(d => d.date <= today);
-      if (!days.length) throw new Error('empty');
-
-      // Pad the first week so columns start on Sunday, like GitHub
-      const pad = new Date(days[0].date + 'T00:00:00').getDay();
-      const frag = document.createDocumentFragment();
-      for (let p = 0; p < pad; p++) { const i = document.createElement('i'); i.style.visibility = 'hidden'; frag.appendChild(i); }
-      days.forEach(d => {
-        const i = document.createElement('i');
-        i.dataset.l = d.level;
-        i.title = `${d.count} contribution${d.count === 1 ? '' : 's'} on ${d.date}`;
-        frag.appendChild(i);
-      });
-      graph.appendChild(frag);
-      const wrap = graph.parentElement;
-      wrap.scrollLeft = wrap.scrollWidth;
-
-      const total = data.total && typeof data.total.lastYear === 'number'
-        ? data.total.lastYear
-        : days.reduce((sum, d) => sum + d.count, 0);
-      const s = streaks(days);
-      setStat('total', total);
-      setStat('current', s.current);
-      setStat('longest', s.longest);
-
-      if (!reduced) {
-        gsap.from(graph, {
-          opacity: 0,
-          y: 20,
-          duration: 1,
-          ease: 'expo.out',
-          scrollTrigger: { trigger: graph, start: 'top 88%' }
-        });
-      }
-      ScrollTrigger.refresh();
-    })
-    .catch(offline);
+    panel.addEventListener('mouseleave', () => { ix(0); iy(0); });
+  });
+  gsap.from(panels, {
+    y: 60,
+    opacity: 0,
+    duration: 1.2,
+    stagger: 0.12,
+    ease: 'expo.out',
+    scrollTrigger: { trigger: '.social-panels', start: 'top 85%' }
+  });
 }
 
 // Journey: line fills and a dot travels down it with the scroll; milestones light up as it passes
@@ -780,7 +737,7 @@ function init() {
   }
   safe(initRails);
   safe(initToolbox);
-  safe(initGitHub);
+  safe(initSocial);
   safe(initNavTheme);
   safe(initScrollMap);
   ScrollTrigger.refresh();
