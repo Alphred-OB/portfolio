@@ -66,6 +66,7 @@ function initTheme() {
 function heroIntro(tl, at) {
   tl.to('.nav', { yPercent: 0, opacity: 1, duration: 1, ease: 'expo.out' }, at + 0.5)
     .to('.hero-bg-word', { opacity: 0.025, scale: 1, duration: 2, ease: 'expo.out' }, at)
+    .to('.status-pill', { y: 0, opacity: 1, duration: 1, ease: 'expo.out' }, at + 0.1)
     .to('.hero-intro .reveal-line > span', { yPercent: 0, duration: 1.1, ease: 'expo.out' }, at + 0.2)
     .to('.hero-line .fit', { yPercent: 0, duration: 1.4, stagger: 0.12, ease: 'expo.out' }, at + 0.25)
     .to('.hero-portrait', { clipPath: 'inset(0% 0 0 0)', y: 0, duration: 1.6, ease: 'expo.out' }, at + 0.4)
@@ -86,6 +87,7 @@ function runIntro() {
   gsap.set('.nav', { yPercent: -100, opacity: 0 });
   gsap.set('.hero-bg-word', { opacity: 0, scale: 1.15 });
   gsap.set('.hero-intro .reveal-line > span, .hero-line .fit', { yPercent: 110 });
+  gsap.set('.status-pill', { y: 20, opacity: 0 });
   gsap.set('.hero-portrait', { clipPath: 'inset(100% 0 0 0)', y: 80 });
   gsap.set('.hero-badge', { scale: 0, rotate: -120 });
   gsap.set('.hero-foot > *', { y: 24, opacity: 0 });
@@ -261,7 +263,7 @@ function initNav() {
 // Flip nav colours while it sits over a dark section (runs after pinning so spacers exist)
 function initNavTheme() {
   const nav = $('.nav');
-  $$('.work, .contact').forEach(sec => {
+  $$('.work, .contact, .security').forEach(sec => {
     ScrollTrigger.create({
       trigger: sec.parentElement.classList.contains('pin-spacer') ? sec.parentElement : sec,
       start: 'top 40px',
@@ -391,6 +393,19 @@ function initReveals() {
   batchUp('.about-grid > *');
   batchUp('.service', { y: 40 });
   batchUp('.process-body', { y: 40 });
+  batchUp('.sec-card', { y: 40 });
+  batchUp('.review-card', { y: 50 });
+  // Stars pop in one by one when the rating comes into view
+  $$('.rating-row .stars, .review-card .stars').forEach(group => {
+    gsap.from($$('svg', group), {
+      scale: 0,
+      rotate: -90,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'back.out(2)',
+      scrollTrigger: { trigger: group, start: 'top 90%' }
+    });
+  });
   batchUp('.tool-tab', { y: 16 });
   batchUp('.tool-card', { y: 30 });
   batchUp('.faq-item', { y: 30 });
@@ -439,6 +454,21 @@ function initProcess() {
 }
 
 // Pause the looping logo rows while they are off screen
+// Security: a scan line sweeps across the cards once they are on screen
+function initSecurity() {
+  $$('.sec-grid').forEach(grid => {
+    ScrollTrigger.create({
+      trigger: grid,
+      start: 'top 70%',
+      once: true,
+      onEnter: () => {
+        grid.style.setProperty('--scan-h', grid.offsetHeight + 'px');
+        grid.classList.add('is-scanned');
+      }
+    });
+  });
+}
+
 function initRails() {
   const rails = $('.logo-rails');
   if (!rails) return;
@@ -735,6 +765,7 @@ function init() {
     safe(initProcess);
     safe(initMarquee);
   }
+  safe(initSecurity);
   safe(initRails);
   safe(initToolbox);
   safe(initSocial);

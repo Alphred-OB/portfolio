@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "growing-past-thousands-of-users",
+    "title": "Keeping a platform fast as it grows past thousands of users",
+    "date": "2026-09-20",
+    "tags": ["Performance", "Scaling"],
+    "summary": "The habits that keep a system quick when it goes from hundreds to thousands of users."
+  },
+  {
+    "slug": "security-is-not-an-add-on",
+    "title": "Security is not an add-on",
+    "date": "2026-09-12",
+    "tags": ["Security"],
+    "summary": "Why protection has to be built in from day one, and what I include in every project by default."
+  },
+  {
+    "slug": "website-web-app-or-pwa",
+    "title": "Website, web app or PWA: which one does your business need?",
+    "date": "2026-09-05",
+    "tags": ["Planning", "Web apps"],
+    "summary": "A plain language guide to choosing between a website, a web app, a PWA and a dedicated app."
+  }
+]
