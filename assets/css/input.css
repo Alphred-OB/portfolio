@@ -140,7 +140,9 @@ html[data-theme="dark"] .ico-moon { display: none; }
   background: #0e0e0e;
   color: #f3f2ee;
 }
-html.js .loader { display: flex; }
+html.js .loader { display: flex; animation: loaderFailsafe 0.6s ease 8s forwards; }
+/* If the script never starts (blocked, cached or failed), never trap the page behind the loader */
+@keyframes loaderFailsafe { to { opacity: 0; visibility: hidden; } }
 
 .loader-top, .loader-bottom {
   display: flex;
