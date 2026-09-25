@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Case study: how Alfred Boakye designed and built web portals for two UMaT student associations, ACSES and GESA, to manage dues, announcements, events, resources and student issues.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alfred Boakye">
+<meta property="og:title" content="Student association portals case study | Alfred Boakye">
+<meta property="og:description" content="Case study: how Alfred Boakye designed and built web portals for two UMaT student associations, ACSES and GESA, to manage dues, announcements, events, resources and student issues.">
+<meta property="og:url" content="https://alphred-ob.github.io/portfolio/student-portals.html">
+<meta property="og:image" content="https://alphred-ob.github.io/portfolio/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alfred Boakye, Developer and Co-Founder">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://alphred-ob.github.io/portfolio/student-portals.html">
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="AB">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0e0e0e">
+<title>Student association portals case study | Alfred Boakye</title>
+<script>
+  (function (d) {
+    d.classList.add('js');
+    // Every new visit starts light; a dark choice only lasts for this browsing session
+    try { localStorage.removeItem('ab-theme'); var t = sessionStorage.getItem('ab-theme'); if (t) d.dataset.theme = t; } catch (e) {}
+    try {
+      // Arriving from another page: start behind the curtain, skip the intro loader
+      if (sessionStorage.getItem('ab-enter') !== null) d.classList.add('is-entering');
+      if (sessionStorage.getItem('ab-visited')) d.classList.add('no-loader');
+      sessionStorage.setItem('ab-visited', '1');
+    } catch (e) {}
+  })(document.documentElement);
+</script>
+<link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/lenis.css?v=29">
+<link rel="stylesheet" href="assets/css/style.css?v=29">
+</head>
+<body>
+
+<!-- Page transition overlay -->
+<div class="curtain" aria-hidden="true">
+  <div class="curtain-panel"></div>
+  <span class="curtain-label" id="curtainLabel"></span>
+</div>
+<script>try { var l = sessionStorage.getItem('ab-enter'); if (l) document.getElementById('curtainLabel').textContent = l; } catch (e) {}</script>
+
+<!-- Scroll progress + custom cursor -->
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+<div class="cursor" aria-hidden="true"><span class="cursor-label">View</span></div>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" data-label="Home" aria-label="Alfred Boakye, home"><img src="assets/img/logo.png" width="50" height="50" alt=""></a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html" data-label="Home">Home</a>
+    <a href="about.html" data-label="About">About</a>
+    <a href="work.html" data-label="Work" aria-current="page">Work</a>
+    <a href="notes.html" data-label="Notes">Notes</a>
+    <a href="contact.html" data-label="Contact">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
+      <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+      <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2M12 20.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1.5 12h2M20.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+    </button>
+    <a class="nav-cta" href="contact.html" data-label="Contact"><span>Let's talk</span></a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="index.html" data-label="Home"><small>01</small>Home</a>
+    <a href="about.html" data-label="About"><small>02</small>About</a>
+    <a href="work.html" data-label="Work" aria-current="page"><small>03</small>Work</a>
+    <a href="notes.html" data-label="Notes"><small>04</small>Notes</a>
+    <a href="contact.html" data-label="Contact"><small>05</small>Contact</a>
+  </nav>
+  <div class="mobile-menu-foot">
+    <a href="mailto:alfredwalker180@gmail.com">alfredwalker180@gmail.com</a>
+    <span>Ghana / Remote</span>
+  </div>
+</div>
+
+<!-- Section index, mapped to scroll -->
+<aside class="section-meter" aria-hidden="true">
+  <span class="section-meter-num" id="meterNum">00</span>
+  <span class="section-meter-track"><span id="meterFill"></span></span>
+  <span class="section-meter-name" id="meterName">Intro</span>
+</aside>
+
+<main id="top">
+
+<section class="page-hero case-hero" id="intro" data-name="Intro">
+  <div class="container">
+    <a class="case-back" href="work.html" data-label="Work"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All work</a>
+    <span class="eyebrow"><span class="dot"></span>Case study</span>
+    <h1 class="page-title">
+      <span class="reveal-line"><span>Student</span></span>
+      <span class="reveal-line"><span><em>Portals.</em></span></span>
+    </h1>
+    <p class="page-intro">Web portals for two student associations at UMaT, so their executives can manage members, collect dues and keep everyone informed from one place.</p>
+    <div class="case-orgs">
+      <span class="case-org"><img src="Projects/acses-logo.webp" alt="" width="240" height="240"><span><strong>ACSES</strong><small>Association of Computer Science and Engineering Students</small></span></span>
+      <span class="case-org"><img src="Projects/gesa-logo.webp" alt="" width="240" height="240"><span><strong>GESA</strong><small>Geomatic Engineering Students Association</small></span></span>
+    </div>
+    <dl class="case-facts">
+      <div><dt>Clients</dt><dd>ACSES and GESA, UMaT</dd></div>
+      <div><dt>My role</dt><dd>Designed and built both, end to end</dd></div>
+      <div><dt>Type</dt><dd>Member and dues management portals</dd></div>
+      <div><dt>Live</dt><dd><a href="https://student.acses-umat.com/login" target="_blank" rel="noopener noreferrer">ACSES portal <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><br><a href="https://student.gesa-umat.com/login" target="_blank" rel="noopener noreferrer">GESA portal <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="case-shot" id="preview" data-name="Preview">
+  <div class="container">
+    <figure class="case-frame">
+      <img src="Projects/acses-dashboard.webp" alt="ACSES admin dashboard with private figures blurred" width="1936" height="1219" loading="lazy">
+      <figcaption>ACSES admin dashboard. Private figures are blurred to protect students.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="case-body" id="story" data-name="Story">
+  <div class="container">
+    <div class="case-row">
+      <div class="case-label"><span class="case-num">01</span><h2>The brief</h2></div>
+      <div class="case-text">
+        <p class="case-lead">The executives of two departmental associations needed a proper way to run things and talk to their students.</p>
+        <p>Dues, announcements, events, study resources and student complaints all need a home. When they live across group chats and spreadsheets, messages get lost, payments are hard to track and new executives inherit a mess every year. ACSES and GESA wanted one portal where all of it lives, and I built it.</p>
+      </div>
+    </div>
+
+    <div class="case-row">
+      <div class="case-label"><span class="case-num">02</span><h2>What it does</h2></div>
+      <div class="case-text">
+        <p>Students get their own account. Executives get an admin side to manage everything. Both portals cover the same core jobs:</p>
+        <ul class="case-feats"><li class="case-feat"><strong>Dues and payments</strong><span>Executives set dues for each year group, and the portal tracks who has paid, who is pending and who still owes.</span></li><li class="case-feat"><strong>Announcements</strong><span>One place for official news, so important messages are not buried in a busy group chat.</span></li><li class="case-feat"><strong>Events</strong><span>Upcoming programmes and meetings, with the date and details students need.</span></li><li class="case-feat"><strong>Resources</strong><span>Past questions, notes and useful files, shared with members in one organised place.</span></li><li class="case-feat"><strong>Issues and suggestions</strong><span>Students can report a problem or make a suggestion, and executives can follow it up and mark it resolved.</span></li><li class="case-feat"><strong>Registrations and verification</strong><span>New students sign up, and executives check and approve them before they get access.</span></li></ul>
+      </div>
+    </div>
+
+    <div class="case-row">
+      <div class="case-label"><span class="case-num">03</span><h2>Inside the portals</h2></div>
+      <div class="case-text">
+        <p class="case-lead">Each association has its own branding, but the same clear layout: a simple side menu, and a dashboard that shows what needs attention first.</p>
+        <div class="case-gallery">
+          <figure class="case-frame"><img src="Projects/gesa-dashboard.webp" alt="GESA admin overview with private figures blurred" width="1986" height="1057" loading="lazy"><figcaption>GESA admin overview</figcaption></figure>
+          <figure class="case-frame"><img src="Projects/gesa-finance.webp" alt="GESA dues breakdown by year group with amounts blurred" width="2000" height="1076" loading="lazy"><figcaption>Dues breakdown by year group</figcaption></figure>
+        </div>
+        <p class="case-note">Numbers and names in these screenshots have been blurred in the images themselves. Student and payment data stays private.</p>
+      </div>
+    </div>
+
+    <div class="case-row">
+      <div class="case-label"><span class="case-num">04</span><h2>Built for sensitive data</h2></div>
+      <div class="case-text">
+        <p class="case-lead">These portals hold student records and payment information, so security was part of the plan from the first day.</p>
+        <ul class="case-list">
+          <li><span class="case-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-10"/></svg></span><span><strong>Only approved students get in.</strong> New registrations are checked by executives before an account is active.</span></li>
+          <li><span class="case-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-10"/></svg></span><span><strong>Admins see only what they need.</strong> The executive side is separate from the student side.</span></li>
+          <li><span class="case-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-10"/></svg></span><span><strong>Protected accounts.</strong> Hashed passwords, safe forms and protection against repeated login attempts.</span></li>
+          <li><span class="case-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-10"/></svg></span><span><strong>A clear record of dues.</strong> Every payment is tracked, so nothing depends on memory or paper receipts.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="case-row">
+      <div class="case-label"><span class="case-num">05</span><h2>The result</h2></div>
+      <div class="case-text">
+        <p class="case-lead">Both associations now run on their own portal.</p>
+        <ul class="case-list">
+          <li><span class="case-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-10"/></svg></span><span>Executives see members, dues and open issues at a glance.</span></li>
+          <li><span class="case-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-10"/></svg></span><span>Students have one place for news, events, resources and their dues.</span></li>
+          <li><span class="case-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-10"/></svg></span><span>Problems get reported and followed up, instead of lost in a chat.</span></li>
+          <li><span class="case-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-10"/></svg></span><span>Everything carries over when a new executive team takes charge.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact cta" id="cta" data-name="Contact">
+  <div class="container">
+    <span class="eyebrow"><span class="dot"></span>Need a portal for your organisation?</span>
+    <h2 class="contact-title">
+      <span class="reveal-line"><span>Let's work</span></span>
+      <span class="reveal-line"><span class="outline">together</span></span>
+    </h2>
+    <div class="contact-links">
+      <a href="contact.html" data-label="Contact" class="pill pill-solid">Start a project <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="mailto:alfredwalker180@gmail.com" class="pill">alfredwalker180@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>&copy; 2026 Alfred Boakye</span>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="index.html" data-label="Home">Home</a>
+      <a href="about.html" data-label="About">About</a>
+      <a href="work.html" data-label="Work">Work</a>
+      <a href="notes.html" data-label="Notes">Notes</a>
+      <a href="contact.html" data-label="Contact">Contact</a>
+    </nav>
+    <a href="#top" class="to-top">Back to top <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+  </div>
+</footer>
+
+<script src="assets/js/gsap.min.js?v=29"></script>
+<script src="assets/js/ScrollTrigger.min.js?v=29"></script>
+<script src="assets/js/lenis.min.js?v=29"></script>
+<script src="assets/js/main.js?v=29"></script>
+</body>
+</html>

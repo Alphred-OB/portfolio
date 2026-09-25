@@ -1569,6 +1569,23 @@ html[data-theme="dark"] .timeline-logo { padding: 4px 8px; border-radius: 8px; b
 .case-split p { font-size: 1rem; }
 .case-visit { align-self: flex-start; margin-top: 10px; }
 
+/* Case study extras */
+.case-orgs { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+.case-org { display: inline-flex; align-items: center; gap: 14px; padding: 10px 20px 10px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+.case-org img { width: 52px; height: 52px; border-radius: 50%; background: #fff; }
+.case-org span { display: flex; flex-direction: column; line-height: 1.3; }
+.case-org small { font-size: 0.78rem; color: var(--text-2); }
+.case-frame { margin: 0; }
+.case-frame img { width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.45); }
+.case-frame figcaption { margin-top: 12px; font-size: 0.85rem; color: var(--text-2); }
+.case-gallery { display: grid; gap: 22px; margin-top: 6px; }
+.case-note { font-size: 0.9rem !important; color: var(--text-3) !important; }
+.case-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 6px 0 0; padding: 0; list-style: none; }
+.case-feat { display: flex; flex-direction: column; gap: 6px; padding: 22px; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); transition: border-color 0.4s, transform 0.6s var(--ease); }
+.case-feat:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.case-feat strong { font-size: 1.05rem; }
+.case-feat span { color: var(--text-2); font-size: 0.95rem; }
+
 /* Work card link to a case study */
 .work-case { display: inline-flex; align-items: center; gap: 8px; margin: 14px 0 0 10px; padding: 6px 14px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 0.78rem; font-weight: 600; transition: transform 0.5s var(--ease); }
 .work-case:hover { transform: translateX(4px); }
@@ -2021,7 +2038,7 @@ body.is-note .notes { padding-top: clamp(120px, 16vh, 170px); }
 }
 
 @media (max-width: 560px) {
-  .case-split { grid-template-columns: 1fr; }
+  .case-split, .case-feats { grid-template-columns: 1fr; }
   .work-case { margin-left: 0; }
   .review-grid, .pr-grid { grid-template-columns: 1fr; }
   .pr-card, .pr-design, .pr-found { grid-column: auto; }

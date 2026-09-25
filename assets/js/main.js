@@ -397,6 +397,7 @@ function initReveals() {
   batchUp('.review-card', { y: 50 });
   batchUp('.pr-card', { y: 50 });
   batchUp('.case-row', { y: 40 });
+  batchUp('.case-feat', { y: 30 });
   batchUp('.case-shot img', { y: 60 });
   // Stars pop in one by one when the rating comes into view
   $$('.rating-panel .stars, .review-card .stars').forEach(group => {
