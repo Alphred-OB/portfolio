@@ -1,0 +1,42 @@
+# Alfred Boakye
+
+> Freelance developer and co-founder of Erudite Africa Network (EAN), based in Ghana and working with clients worldwide. Alfred builds secure websites, web apps, progressive web apps, mobile apps for Android and iPhone, desktop apps and point of sale (POS) systems. He has a cyber security background from the University of Mines and Technology (UMaT), and apps he has built serve more than 6,000 users.
+
+## What he offers
+- Websites, web apps, portals and dashboards
+- Mobile apps and progressive web apps (PWA)
+- Desktop apps for Windows, Mac and Linux
+- POS, stock and business systems
+- Redesigns, speed upgrades, SEO and AI search visibility (AEO)
+
+## How he works
+- Designed for phones, tablets and desktops
+- Security built in: encrypted connections, protected passwords, attack protection, rate limits and backups
+- Fast loading with caching and a global CDN
+- AI assisted development, personally reviewed and tested
+
+## Pages
+- [Home](https://alphred-ob.github.io/portfolio/): overview, services, work and reviews
+- [About](https://alphred-ob.github.io/portfolio/about.html): journey, tools and how he works
+- [Work](https://alphred-ob.github.io/portfolio/work.html): selected projects
+- [Erudite Academy case study](https://alphred-ob.github.io/portfolio/erudite-academy.html): a private learning platform with automatic certificates, built for Erudite Africa Network
+- [Student association portals case study](https://alphred-ob.github.io/portfolio/student-portals.html): portals for ACSES and GESA at UMaT to manage dues, announcements, events, resources and student issues
+- [Notes](https://alphred-ob.github.io/portfolio/notes.html): articles on building secure, fast software
+- [Contact](https://alphred-ob.github.io/portfolio/contact.html): email, WhatsApp and FAQ
+
+## Writing
+- [Vibe 404](https://github.com/Alphred-OB/Vibe_404): his free open source handbook on taking AI built apps to production (design, payments, databases, legal)
+- [How to use AI to design and build your web app without it looking like AI](https://alphred-ob.github.io/portfolio/notes.html?n=ai-without-the-ai-look)
+- [What AEO is and why your business needs it](https://alphred-ob.github.io/portfolio/notes.html?n=what-is-aeo)
+- [Keeping a platform fast as it grows past thousands of users](https://alphred-ob.github.io/portfolio/notes.html?n=growing-past-thousands-of-users)
+- [Security is not an add-on](https://alphred-ob.github.io/portfolio/notes.html?n=security-is-not-an-add-on)
+- [Website, web app or PWA: which one does your business need?](https://alphred-ob.github.io/portfolio/notes.html?n=website-web-app-or-pwa)
+- [Why AI built apps break when real customers arrive](https://alphred-ob.github.io/portfolio/notes.html?n=why-ai-built-apps-break)
+- [Taking payments without double charges or frozen accounts](https://alphred-ob.github.io/portfolio/notes.html?n=payments-without-double-charges)
+- [Why you should never really delete customer data](https://alphred-ob.github.io/portfolio/notes.html?n=never-really-delete-customer-data)
+
+## Contact
+- Email: alfredwalker180@gmail.com
+- WhatsApp: +233 53 559 4525
+- GitHub: https://github.com/Alphred-OB
+- LinkedIn: https://www.linkedin.com/in/alfredboakye/
