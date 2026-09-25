@@ -66,7 +66,6 @@ function initTheme() {
 function heroIntro(tl, at) {
   tl.to('.nav', { yPercent: 0, opacity: 1, duration: 1, ease: 'expo.out' }, at + 0.5)
     .to('.hero-bg-word', { opacity: 0.025, scale: 1, duration: 2, ease: 'expo.out' }, at)
-    .to('.status-pill', { y: 0, opacity: 1, duration: 1, ease: 'expo.out' }, at + 0.1)
     .to('.hero-intro .reveal-line > span', { yPercent: 0, duration: 1.1, ease: 'expo.out' }, at + 0.2)
     .to('.hero-line .fit', { yPercent: 0, duration: 1.4, stagger: 0.12, ease: 'expo.out' }, at + 0.25)
     .to('.hero-portrait', { clipPath: 'inset(0% 0 0 0)', y: 0, duration: 1.6, ease: 'expo.out' }, at + 0.4)
@@ -87,7 +86,6 @@ function runIntro() {
   gsap.set('.nav', { yPercent: -100, opacity: 0 });
   gsap.set('.hero-bg-word', { opacity: 0, scale: 1.15 });
   gsap.set('.hero-intro .reveal-line > span, .hero-line .fit', { yPercent: 110 });
-  gsap.set('.status-pill', { y: 20, opacity: 0 });
   gsap.set('.hero-portrait', { clipPath: 'inset(100% 0 0 0)', y: 80 });
   gsap.set('.hero-badge', { scale: 0, rotate: -120 });
   gsap.set('.hero-foot > *', { y: 24, opacity: 0 });
@@ -357,7 +355,7 @@ function initReveals() {
     });
   });
 
-  $$('.eyebrow, .page-intro').forEach(el => {
+  $$('.page-intro').forEach(el => {
     gsap.from(el, {
       opacity: 0,
       y: 20,
@@ -393,7 +391,8 @@ function initReveals() {
   batchUp('.about-grid > *');
   batchUp('.service', { y: 40 });
   batchUp('.process-body', { y: 40 });
-  batchUp('.sec-card', { y: 40 });
+  batchUp('.sec-item', { y: 30 });
+  batchUp('.case-card', { y: 50 });
   batchUp('.review-card', { y: 50 });
   batchUp('.pr-card', { y: 50 });
   batchUp('.case-row', { y: 40 });
@@ -557,6 +556,81 @@ function initToolbox() {
 }
 
 // Connect panels: the brand colour spreads from where the mouse enters, and the card leans toward it
+const GITHUB_USER = 'Alphred-OB';
+
+function streaks(days) {
+  let longest = 0, run = 0;
+  days.forEach(d => { run = d.count > 0 ? run + 1 : 0; longest = Math.max(longest, run); });
+  // Current streak counts back from today; an empty today does not break it yet
+  let current = 0;
+  let i = days.length - 1;
+  if (i >= 0 && days[i].count === 0) i--;
+  for (; i >= 0 && days[i].count > 0; i--) current++;
+  return { current, longest };
+}
+
+function initGitHub() {
+  const section = $('#github');
+  if (!section) return;
+  const graph = $('#ghGraph');
+  const setStat = (key, value) => {
+    const el = $(`[data-gh="${key}"]`, section);
+    const obj = { v: 0 };
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 92%',
+      once: true,
+      onEnter: () => gsap.to(obj, { v: value, duration: 1.6, ease: 'power3.out', onUpdate: () => { el.textContent = Math.round(obj.v).toLocaleString(); } })
+    });
+  };
+  const offline = () => { section.classList.add('is-offline'); $('#ghFallback').hidden = false; ScrollTrigger.refresh(); };
+
+  const ctrl = 'AbortController' in window ? new AbortController() : null;
+  const timer = setTimeout(() => ctrl && ctrl.abort(), 8000);
+  fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USER}?y=last`, ctrl ? { signal: ctrl.signal } : {})
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      clearTimeout(timer);
+      const today = new Date().toISOString().slice(0, 10);
+      const days = (data.contributions || []).filter(d => d.date <= today);
+      if (!days.length) throw new Error('empty');
+
+      // Pad the first week so columns start on Sunday, like GitHub
+      const pad = new Date(days[0].date + 'T00:00:00').getDay();
+      const frag = document.createDocumentFragment();
+      for (let p = 0; p < pad; p++) { const i = document.createElement('i'); i.style.visibility = 'hidden'; frag.appendChild(i); }
+      days.forEach(d => {
+        const i = document.createElement('i');
+        i.dataset.l = d.level;
+        i.title = `${d.count} contribution${d.count === 1 ? '' : 's'} on ${d.date}`;
+        frag.appendChild(i);
+      });
+      graph.appendChild(frag);
+      const wrap = graph.parentElement;
+      wrap.scrollLeft = wrap.scrollWidth;
+
+      const total = data.total && typeof data.total.lastYear === 'number'
+        ? data.total.lastYear
+        : days.reduce((sum, d) => sum + d.count, 0);
+      const s = streaks(days);
+      setStat('total', total);
+      setStat('current', s.current);
+      setStat('longest', s.longest);
+
+      if (!reduced) {
+        gsap.from(graph, {
+          opacity: 0,
+          y: 20,
+          duration: 1,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: graph, start: 'top 88%' }
+        });
+      }
+      ScrollTrigger.refresh();
+    })
+    .catch(offline);
+}
+
 function initSocial() {
   const panels = $$('.social-panel');
   if (!panels.length) return;
@@ -809,6 +883,7 @@ function init() {
   safe(initRails);
   safe(initToolbox);
   safe(initSocial);
+  safe(initGitHub);
   safe(initNavTheme);
   safe(initScrollMap);
   ScrollTrigger.refresh();
