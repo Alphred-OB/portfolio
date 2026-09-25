@@ -388,7 +388,9 @@ function initReveals() {
   };
   batchUp('.about-grid > *');
   batchUp('.service', { y: 40 });
-  batchUp('.step', { y: 60 });
+  batchUp('.process-body', { y: 40 });
+  batchUp('.tool-group h3', { y: 20 });
+  batchUp('.tool', { y: 24 });
   batchUp('.faq-item', { y: 30 });
   batchUp('.contact-email, .contact-links', { y: 30 });
 
@@ -408,6 +410,34 @@ function initReveals() {
         onUpdate: () => { el.textContent = Math.round(obj.v); }
       })
     });
+  });
+}
+
+// Process: each big numeral rises in and its image drifts as you scroll
+function initProcess() {
+  $$('.process-row').forEach(row => {
+    const num = $('.process-num', row);
+    const rule = $('.process-rule', row);
+    gsap.from(num, {
+      yPercent: 30,
+      opacity: 0,
+      duration: 1.3,
+      ease: 'expo.out',
+      scrollTrigger: { trigger: row, start: 'top 85%' }
+    });
+    gsap.fromTo(num, { backgroundPositionY: '20%' }, {
+      backgroundPositionY: '80%',
+      ease: 'none',
+      scrollTrigger: { trigger: row, start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+    if (rule) {
+      gsap.from(rule, {
+        scaleX: 0,
+        duration: 1,
+        ease: 'expo.out',
+        scrollTrigger: { trigger: row, start: 'top 75%' }
+      });
+    }
   });
 }
 
@@ -613,6 +643,7 @@ function init() {
     safe(initReveals);
     safe(initWork);
     safe(initJourney);
+    safe(initProcess);
     safe(initMarquee);
   }
   safe(initNavTheme);
