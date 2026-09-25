@@ -792,9 +792,6 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
 .work-card { width: clamp(320px, 44vw, 720px); flex-shrink: 0; }
 .work-media {
   aspect-ratio: 2984 / 1714;
-  overflow: hidden;
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--invert-text) 8%, transparent);
 }
 .work-media img {
   width: 100%;
