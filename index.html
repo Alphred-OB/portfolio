@@ -8,7 +8,8 @@
 <script>
   (function (d) {
     d.classList.add('js');
-    try { var t = localStorage.getItem('ab-theme'); if (t) d.dataset.theme = t; } catch (e) {}
+    // Every new visit starts light; a dark choice only lasts for this browsing session
+    try { localStorage.removeItem('ab-theme'); var t = sessionStorage.getItem('ab-theme'); if (t) d.dataset.theme = t; } catch (e) {}
     try {
       // Arriving from another page: start behind the curtain, skip the intro loader
       if (sessionStorage.getItem('ab-enter') !== null) d.classList.add('is-entering');
@@ -19,8 +20,8 @@
 </script>
 <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/lenis.css?v=9">
-<link rel="stylesheet" href="assets/css/style.css?v=9">
+<link rel="stylesheet" href="assets/css/lenis.css?v=10">
+<link rel="stylesheet" href="assets/css/style.css?v=10">
 </head>
 <body>
 <!-- Intro loader -->
@@ -105,7 +106,7 @@
     <img src="me.png" width="1280" height="1280" alt="Portrait of Alfred Boakye" fetchpriority="high">
   </div>
 
-  <a class="hero-badge" href="work.html" data-label="Work" aria-label="See my work">
+  <a class="hero-badge" href="#work" data-label="Work" aria-label="See my work">
     <svg class="badge-ring" viewBox="0 0 100 100" aria-hidden="true">
       <defs><path id="circlePath" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
       <text><textPath href="#circlePath" textLength="236" lengthAdjust="spacing">See my work &bull; See my work &bull;</textPath></text>
@@ -200,12 +201,190 @@
   </div>
 </section>
 
+<section class="work" id="work" data-name="Work">
+  <div class="work-pin">
+    <div class="work-head container">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Selected work</span>
+        <h2 class="section-title"><span class="reveal-line"><span>Recent projects</span></span></h2>
+      </div>
+      <div class="work-counter" aria-hidden="true">
+        <span id="workCurrent">01</span><span class="sep">/</span><span>11</span>
+      </div>
+    </div>
+
+    <div class="work-track" id="workTrack">
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/CEANA-REDESIGNED_WEBSITE.webp" alt="CEANA website redesign" loading="lazy"></div>
+        <div class="work-meta"><span>01</span><span>Website Redesign</span></div>
+        <h3>CEANA</h3>
+        <p>Turned an old, outdated website into a clean, modern and engaging experience.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/EruditeAcademy.webp" alt="Erudite Academy learning platform" loading="lazy"></div>
+        <div class="work-meta"><span>02</span><span>Learning Platform</span></div>
+        <h3>Erudite Academy</h3>
+        <p>An online learning platform where students build new skills and earn certificates, running smoothly for a large community.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/TECHHUB_EMPLOYEE_PORTAL.webp" alt="TechHub employee portal" loading="lazy"></div>
+        <div class="work-meta"><span>03</span><span>Staff Portal</span></div>
+        <h3>TechHub</h3>
+        <p>The employee portal for one of Ghana's largest tech companies.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/SKILLS BRIDGE FOUNDATION.webp" alt="Skills Bridge Foundation website" loading="lazy"></div>
+        <div class="work-meta"><span>04</span><span>Non-profit</span></div>
+        <h3>Skills Bridge</h3>
+        <p>A fast, secure website for a foundation that connects young people to new skills.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/POS_SYSTEM.webp" alt="Point of sale system" loading="lazy"></div>
+        <div class="work-meta"><span>05</span><span>Business Tool</span></div>
+        <h3>Sales &amp; Stock System</h3>
+        <p>A checkout and stock system that helps shops track every sale and item in one place.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/EWAGA.webp" alt="EWAGA community website" loading="lazy"></div>
+        <div class="work-meta"><span>06</span><span>Community</span></div>
+        <h3>EWAGA</h3>
+        <p>The official home of the Ewe Association of Georgia, with memberships, events and community news.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/GESA.webp" alt="GESA student website" loading="lazy"></div>
+        <div class="work-meta"><span>07</span><span>Student Association</span></div>
+        <h3>GESA</h3>
+        <p>A student portal at UMaT giving members easy, secure access to their resources.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/GHASS-G.webp" alt="GHASS-G website" loading="lazy"></div>
+        <div class="work-meta"><span>08</span><span>Training</span></div>
+        <h3>GHASS-G</h3>
+        <p>A course catalogue and certification website for the Global Health and Safety Group.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/GHSIC.webp" alt="GHSIC website" loading="lazy"></div>
+        <div class="work-meta"><span>09</span><span>Careers</span></div>
+        <h3>GHSIC</h3>
+        <p>Connecting students across Ghana with internships and career training.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/hopsausa-canada.webp" alt="HOPSA USA-Canada website" loading="lazy"></div>
+        <div class="work-meta"><span>10</span><span>Alumni Network</span></div>
+        <h3>HOPSA USA-Canada</h3>
+        <p>A members' website helping alumni stay in touch and network across two countries.</p>
+      </article>
+      <article class="work-card">
+        <div class="work-media"><img src="Projects/HOMELAB.jpg" alt="Private server setup" loading="lazy"></div>
+        <div class="work-meta"><span>11</span><span>Personal Project</span></div>
+        <h3>Private Server Lab</h3>
+        <p>My own server at home, hosting a website and streaming service, which I use to practise keeping systems safe.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track" id="marqueeTrack">
     <span>Web Design</span><i></i><span>Development</span><i></i><span>Redesigns</span><i></i><span>Online Security</span><i></i><span>Business Websites</span><i></i>
     <span>Web Design</span><i></i><span>Development</span><i></i><span>Redesigns</span><i></i><span>Online Security</span><i></i><span>Business Websites</span><i></i>
   </div>
 </div>
+
+<section class="journey" id="journey" data-name="Journey">
+  <div class="container">
+    <div class="section-head split">
+      <span class="eyebrow"><span class="dot"></span>Journey</span>
+      <h2 class="section-title"><span class="reveal-line"><span>A few milestones</span></span><span class="reveal-line"><span>so far.</span></span></h2>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-axis" aria-hidden="true">
+        <span class="timeline-fill" id="timelineFill"></span>
+        <span class="timeline-dot" id="timelineDot"></span>
+      </div>
+
+      <article class="timeline-item">
+        <div class="timeline-card">
+          <span class="timeline-year">2024 &ndash; Now</span>
+          <h3>Co-Founder, Erudite Africa Network</h3>
+          <p>Building an online learning platform that makes skills training and certificates accessible across Africa.</p>
+        </div>
+      </article>
+      <article class="timeline-item">
+        <div class="timeline-card">
+          <span class="timeline-year">2024 &ndash; Now</span>
+          <h3>University Student &amp; Freelancer</h3>
+          <p>Studying online security while building websites and systems for businesses and organisations.</p>
+        </div>
+      </article>
+      <article class="timeline-item">
+        <div class="timeline-card">
+          <span class="timeline-year">2023</span>
+          <h3>First Client Projects</h3>
+          <p>Started building websites for schools, associations and small businesses, learning what clients really need.</p>
+        </div>
+      </article>
+      <article class="timeline-item">
+        <div class="timeline-card">
+          <span class="timeline-year">2020 &ndash; 2023</span>
+          <h3>Obuasi Senior High Technical School</h3>
+          <p>Studied IT and built the official website for the school before graduating.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process" data-name="Process">
+  <div class="container">
+    <div class="section-head split">
+      <span class="eyebrow"><span class="dot"></span>How we work together</span>
+      <h2 class="section-title"><span class="reveal-line"><span>Simple, clear</span></span><span class="reveal-line"><span>four steps.</span></span></h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span>01</span><h3>Talk</h3><p>We chat about your business, your customers and what you want the website to do.</p></div>
+      <div class="step"><span>02</span><h3>Plan</h3><p>I map out the pages, the look and the timeline, and share it with you before any work starts.</p></div>
+      <div class="step"><span>03</span><h3>Build</h3><p>I design and build your website, with regular updates so you can see progress.</p></div>
+      <div class="step"><span>04</span><h3>Launch</h3><p>We go live smoothly, and I stay around to make sure everything runs well.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq" data-name="FAQ">
+  <div class="container faq-layout">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>FAQ</span>
+      <h2 class="section-title"><span class="reveal-line"><span>Good</span></span><span class="reveal-line"><span>questions.</span></span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-trigger" type="button" aria-expanded="false">
+          <span>My website is slow and outdated. Why should I upgrade?</span><i></i>
+        </button>
+        <div class="faq-answer"><p>A slow website turns visitors away before they ever see what you offer. A fast, modern one keeps people interested, looks professional and helps turn visitors into paying customers.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" type="button" aria-expanded="false">
+          <span>How do I know my customers' information is safe?</span><i></i>
+        </button>
+        <div class="faq-answer"><p>I build with safety in mind from day one, so logins, forms and payments are protected. Your customers can trust you with their details.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" type="button" aria-expanded="false">
+          <span>Will my website crash if lots of people visit at once?</span><i></i>
+        </button>
+        <div class="faq-answer"><p>No. The websites I build are made to handle busy periods, like sales and launches, so you stay online when it matters most.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" type="button" aria-expanded="false">
+          <span>Will the work disrupt my current website?</span><i></i>
+        </button>
+        <div class="faq-answer"><p>Not at all. I build and test everything privately first, then switch over smoothly once you are happy, so your visitors never notice a thing.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="contact cta" id="cta" data-name="Contact">
   <div class="container">
@@ -236,9 +415,9 @@
   </div>
 </footer>
 
-<script src="assets/js/gsap.min.js?v=9"></script>
-<script src="assets/js/ScrollTrigger.min.js?v=9"></script>
-<script src="assets/js/lenis.min.js?v=9"></script>
-<script src="assets/js/main.js?v=9"></script>
+<script src="assets/js/gsap.min.js?v=10"></script>
+<script src="assets/js/ScrollTrigger.min.js?v=10"></script>
+<script src="assets/js/lenis.min.js?v=10"></script>
+<script src="assets/js/main.js?v=10"></script>
 </body>
 </html>

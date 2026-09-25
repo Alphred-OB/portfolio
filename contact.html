@@ -8,7 +8,8 @@
 <script>
   (function (d) {
     d.classList.add('js');
-    try { var t = localStorage.getItem('ab-theme'); if (t) d.dataset.theme = t; } catch (e) {}
+    // Every new visit starts light; a dark choice only lasts for this browsing session
+    try { localStorage.removeItem('ab-theme'); var t = sessionStorage.getItem('ab-theme'); if (t) d.dataset.theme = t; } catch (e) {}
     try {
       // Arriving from another page: start behind the curtain, skip the intro loader
       if (sessionStorage.getItem('ab-enter') !== null) d.classList.add('is-entering');
@@ -19,8 +20,8 @@
 </script>
 <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/lenis.css?v=9">
-<link rel="stylesheet" href="assets/css/style.css?v=9">
+<link rel="stylesheet" href="assets/css/lenis.css?v=10">
+<link rel="stylesheet" href="assets/css/style.css?v=10">
 </head>
 <body>
 
@@ -148,9 +149,9 @@
   </div>
 </footer>
 
-<script src="assets/js/gsap.min.js?v=9"></script>
-<script src="assets/js/ScrollTrigger.min.js?v=9"></script>
-<script src="assets/js/lenis.min.js?v=9"></script>
-<script src="assets/js/main.js?v=9"></script>
+<script src="assets/js/gsap.min.js?v=10"></script>
+<script src="assets/js/ScrollTrigger.min.js?v=10"></script>
+<script src="assets/js/lenis.min.js?v=10"></script>
+<script src="assets/js/main.js?v=10"></script>
 </body>
 </html>
