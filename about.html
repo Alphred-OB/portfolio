@@ -38,8 +38,8 @@
 </script>
 <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/lenis.css?v=33">
-<link rel="stylesheet" href="assets/css/style.css?v=33">
+<link rel="stylesheet" href="assets/css/lenis.css?v=35">
+<link rel="stylesheet" href="assets/css/style.css?v=35">
 </head>
 <body>
 
@@ -429,8 +429,12 @@
           <div class="gh-stat"><strong data-gh="current">&ndash;</strong><span>Current streak (days)</span></div>
           <div class="gh-stat"><strong data-gh="longest">&ndash;</strong><span>Longest streak (days)</span></div>
         </div>
-        <div class="gh-graph-wrap">
-          <div class="gh-graph" id="ghGraph" role="img" aria-label="GitHub contribution graph for the last year"></div>
+        <div class="gh-cal">
+          <div class="gh-days" aria-hidden="true"><span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span></div>
+          <div class="gh-graph-wrap">
+            <div class="gh-months" id="ghMonths" aria-hidden="true"></div>
+            <div class="gh-graph" id="ghGraph" role="img" aria-label="GitHub contribution graph for the last year"></div>
+          </div>
         </div>
         <div class="gh-legend" aria-hidden="true">Less <i data-l="0"></i><i data-l="1"></i><i data-l="2"></i><i data-l="3"></i><i data-l="4"></i> More</div>
         <p class="gh-fallback" id="ghFallback" hidden>Live activity could not load right now. See the latest on my GitHub profile.</p>
@@ -755,9 +759,9 @@
   </div>
 </footer>
 
-<script src="assets/js/gsap.min.js?v=33"></script>
-<script src="assets/js/ScrollTrigger.min.js?v=33"></script>
-<script src="assets/js/lenis.min.js?v=33"></script>
-<script src="assets/js/main.js?v=33"></script>
+<script src="assets/js/gsap.min.js?v=35"></script>
+<script src="assets/js/ScrollTrigger.min.js?v=35"></script>
+<script src="assets/js/lenis.min.js?v=35"></script>
+<script src="assets/js/main.js?v=35"></script>
 </body>
 </html>

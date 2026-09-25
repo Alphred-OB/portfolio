@@ -606,8 +606,39 @@ function initGitHub() {
         frag.appendChild(i);
       });
       graph.appendChild(frag);
+
+      // Month names above the first week each month starts in, like GitHub
+      const weeks = Math.ceil((pad + days.length) / 7);
+      graph.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
+      const months = $('#ghMonths');
+      if (months) {
+        months.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
+        let last = -3;
+        days.forEach((d, idx) => {
+          const date = new Date(d.date + 'T00:00:00');
+          const col = Math.floor((pad + idx) / 7);
+          if ((idx === 0 || date.getDate() === 1) && col - last >= 3 && col <= weeks - 2) {
+            const s = document.createElement('span');
+            s.textContent = date.toLocaleDateString('en-GB', { month: 'short' });
+            s.style.gridColumn = `${col + 1} / span 3`;
+            months.appendChild(s);
+            last = col;
+          }
+        });
+      }
       const wrap = graph.parentElement;
       wrap.scrollLeft = wrap.scrollWidth;
+      // Keep Mon, Wed and Fri level with their rows at every screen size
+      const dayCol = $('.gh-days', section);
+      const alignDays = () => {
+        if (!dayCol) return;
+        const top = graph.getBoundingClientRect().top - wrap.getBoundingClientRect().top;
+        dayCol.style.paddingTop = `${top}px`;
+        dayCol.style.paddingBottom = '0px';
+        dayCol.style.height = `${top + graph.offsetHeight}px`;
+      };
+      alignDays();
+      window.addEventListener('resize', alignDays);
 
       const total = data.total && typeof data.total.lastYear === 'number'
         ? data.total.lastYear
