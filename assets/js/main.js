@@ -54,9 +54,45 @@ function fitHeroText() {
 function initTheme() {
   const btn = $('#themeToggle');
   if (!btn) return;
+  let busy = false;
+  const apply = next => {
+    root.dataset.theme = next;
+    try { sessionStorage.setItem('ab-theme', next); } catch (e) {}
+  };
   btn.addEventListener('click', () => {
-    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    try { sessionStorage.setItem('ab-theme', root.dataset.theme); } catch (e) {}
+    if (busy) return;
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    // The new theme spreads out as a circle from the button until it covers the screen
+    const r = btn.getBoundingClientRect();
+    const x = r.left + r.width / 2;
+    const y = r.top + r.height / 2;
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    const clip = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`];
+    const timing = { duration: 1100, easing: 'cubic-bezier(0.76, 0, 0.24, 1)' };
+    busy = true;
+    btn.classList.remove('is-spinning');
+    void btn.offsetWidth;
+    btn.classList.add('is-spinning');
+
+    if (document.startViewTransition) {
+      root.classList.add('theme-anim');
+      const t = document.startViewTransition(() => apply(next));
+      t.ready.then(() => {
+        root.animate({ clipPath: clip }, { ...timing, pseudoElement: '::view-transition-new(root)' });
+      }).catch(() => {});
+      t.finished.finally(() => { root.classList.remove('theme-anim'); busy = false; });
+      return;
+    }
+
+    // Older browsers: a colour wipe in the new theme, then the swap underneath it
+    const wipe = document.createElement('div');
+    wipe.className = 'theme-wipe';
+    wipe.style.background = next === 'dark' ? '#0c0c0c' : '#f3f2ee';
+    document.body.appendChild(wipe);
+    wipe.animate({ clipPath: clip }, { ...timing, fill: 'forwards' }).finished.then(() => {
+      apply(next);
+      return wipe.animate({ opacity: [1, 0] }, { duration: 350, fill: 'forwards' }).finished;
+    }).finally(() => { wipe.remove(); busy = false; });
   });
 }
 

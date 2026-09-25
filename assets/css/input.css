@@ -365,6 +365,15 @@ html.is-entering .curtain-label { opacity: 1; }
   transition: border-color 0.3s, transform 0.5s var(--ease);
 }
 .theme-toggle:hover { border-color: var(--text); transform: rotate(-20deg); }
+.theme-toggle.is-spinning .ico { animation: themeSpin 1.1s cubic-bezier(0.76, 0, 0.24, 1); }
+@keyframes themeSpin { 0% { transform: rotate(0) scale(1); } 45% { transform: rotate(200deg) scale(0.6); } 100% { transform: rotate(360deg) scale(1); } }
+
+/* Cinematic theme switch */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { z-index: 2; }
+::view-transition-old(root) { z-index: 1; }
+html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after { transition: none !important; }
+.theme-wipe { position: fixed; inset: 0; z-index: 10000; pointer-events: none; clip-path: circle(0 at 50% 50%); }
 
 .nav-cta {
   position: relative;
