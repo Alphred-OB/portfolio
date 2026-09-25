@@ -391,7 +391,8 @@ function initReveals() {
   batchUp('.about-grid > *');
   batchUp('.service', { y: 40 });
   batchUp('.process-body', { y: 40 });
-  batchUp('.sec-card', { y: 40 });
+  batchUp('.sec-item', { y: 30 });
+  batchUp('.case-card', { y: 50 });
   batchUp('.review-card', { y: 50 });
   batchUp('.pr-card', { y: 50 });
   batchUp('.case-row', { y: 40 });
