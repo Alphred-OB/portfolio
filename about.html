@@ -38,8 +38,8 @@
 </script>
 <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/lenis.css?v=30">
-<link rel="stylesheet" href="assets/css/style.css?v=30">
+<link rel="stylesheet" href="assets/css/lenis.css?v=31">
+<link rel="stylesheet" href="assets/css/style.css?v=31">
 </head>
 <body>
 
@@ -100,7 +100,6 @@
 
 <section class="page-hero" id="intro" data-name="Intro">
   <div class="container">
-    <span class="eyebrow"><span class="dot"></span>About me</span>
     <h1 class="page-title">
       <span class="reveal-line"><span>A developer who</span></span>
       <span class="reveal-line"><span>cares about</span></span>
@@ -113,7 +112,6 @@
 <section class="journey" id="journey" data-name="Journey">
   <div class="container">
     <div class="section-head split">
-      <span class="eyebrow"><span class="dot"></span>Journey</span>
       <h2 class="section-title"><span class="reveal-line"><span>A few milestones</span></span><span class="reveal-line"><span>so far.</span></span></h2>
     </div>
 
@@ -158,7 +156,6 @@
 <section class="toolbox" id="toolbox" data-name="Toolbox">
   <div class="container">
     <div class="section-head split">
-      <span class="eyebrow"><span class="dot"></span>Toolbox</span>
       <div>
         <h2 class="section-title"><span class="reveal-line"><span>A few tools</span></span><span class="reveal-line"><span>I love.</span></span></h2>
         <p class="toolbox-intro">These are some favourites, not the full list. I pick whatever fits your project best and pick up new tools all the time.</p>
@@ -358,7 +355,6 @@
 <section class="connect" id="connect" data-name="Connect">
   <div class="container">
     <div class="section-head split">
-      <span class="eyebrow"><span class="dot"></span>Find me online</span>
       <h2 class="section-title"><span class="reveal-line"><span>Let's</span></span><span class="reveal-line"><span>connect.</span></span></h2>
     </div>
     <div class="social-panels">
@@ -402,13 +398,34 @@
         <span class="social-cta">Start a chat</span>
       </a>
     </div>
+    <div class="github" id="github">
+      <div class="gh-card">
+        <div class="gh-profile">
+          <img src="assets/img/logo.png" width="64" height="64" alt="" loading="lazy">
+          <div class="gh-name">
+            <strong>Alfred Boakye</strong>
+            <span>@Alphred-OB</span>
+          </div>
+          <a class="pill pill-solid gh-link" href="https://github.com/Alphred-OB" target="_blank" rel="noopener noreferrer">View GitHub profile</a>
+        </div>
+        <div class="gh-stats" id="ghStats">
+          <div class="gh-stat"><strong data-gh="total">&ndash;</strong><span>Contributions in the last year</span></div>
+          <div class="gh-stat"><strong data-gh="current">&ndash;</strong><span>Current streak (days)</span></div>
+          <div class="gh-stat"><strong data-gh="longest">&ndash;</strong><span>Longest streak (days)</span></div>
+        </div>
+        <div class="gh-graph-wrap">
+          <div class="gh-graph" id="ghGraph" role="img" aria-label="GitHub contribution graph for the last year"></div>
+        </div>
+        <div class="gh-legend" aria-hidden="true">Less <i data-l="0"></i><i data-l="1"></i><i data-l="2"></i><i data-l="3"></i><i data-l="4"></i> More</div>
+        <p class="gh-fallback" id="ghFallback" hidden>Live activity could not load right now. See the latest on my GitHub profile.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="practices" id="practices" data-name="Standards">
   <div class="container">
     <div class="section-head split">
-      <span class="eyebrow"><span class="dot"></span>How I build</span>
       <h2 class="section-title"><span class="reveal-line"><span>Six things every</span></span><span class="reveal-line"><span>project <em>gets.</em></span></span></h2>
     </div>
 
@@ -431,7 +448,7 @@
       </article>
 
       <article class="pr-card">
-        <span class="pr-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12l2 2l4-4"/></g></svg></span>
+        
         <span class="pr-num">02</span>
         <h3>Stays up under attack</h3>
         <p>If someone tries to knock your site offline by flooding it with fake visitors, it keeps running. Suspicious traffic is filtered out before it ever reaches you.</p>
@@ -439,7 +456,7 @@
       </article>
 
       <article class="pr-card">
-        <span class="pr-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 14l4-4M3.34 19a10 10 0 1 1 17.32 0"/></svg></span>
+        
         <span class="pr-num">03</span>
         <h3>Loads fast, anywhere</h3>
         <p>Pages are saved and served from servers close to your visitors, images are made smaller and your data is organised so it stays quick as your business grows.</p>
@@ -447,7 +464,7 @@
       </article>
 
       <article class="pr-card">
-        <span class="pr-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 2h4m-2 12l3-3"/><circle cx="12" cy="14" r="8"/></g></svg></span>
+        
         <span class="pr-num">04</span>
         <h3>Ready sooner</h3>
         <p>I use AI tools to handle the repetitive parts of the work, so your project is ready in less time. Every piece is still checked and tested by me before it goes live.</p>
@@ -455,7 +472,7 @@
       </article>
 
       <article class="pr-card pr-design">
-        <span class="pr-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"/><path d="m18 13l-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18M2.3 2.3l7.286 7.286"/><circle cx="11" cy="11" r="2"/></g></svg></span>
+        
         <span class="pr-num">05</span>
         <h3>Design that feels human</h3>
         <p>No design that looks like every other generated site. I research modern layouts and the best products out there, then shape something that fits your brand.</p>
@@ -469,7 +486,7 @@
 
       <article class="pr-card pr-found">
         <div class="pr-copy">
-          <span class="pr-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m21 21l-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g></svg></span>
+          
           <span class="pr-num">06</span>
           <h3>Found on Google and by AI</h3>
           <p>More people now ask ChatGPT and other AI assistants for recommendations instead of searching. I set up your site so Google and AI tools both understand what you do, and can point people to you.</p>
@@ -488,42 +505,41 @@
   <div class="container">
     <div class="security-head">
       <div>
-        <span class="eyebrow"><span class="dot"></span>Security built in</span>
         <h2 class="section-title"><span class="reveal-line"><span>Security is not</span></span><span class="reveal-line"><span>an <em>add-on.</em></span></span></h2>
       </div>
       <div class="security-intro">
-        <span class="sec-badge"><span class="sec-badge-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span>Cyber security, UMaT</span>
+        <span class="sec-badge">Cyber security, UMaT</span>
         <p>With a background in cyber security, every system I build ships with these protections from day one. You never have to ask for them.</p>
       </div>
     </div>
     <ul class="sec-grid">
       <li class="sec-card">
-        <span class="sec-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="16" r="1"/><rect width="18" height="12" x="3" y="10" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></g></svg></span>
+        
         <h3>Encrypted connections</h3>
         <p>HTTPS everywhere, so data moving between your users and your system cannot be read or changed.</p>
       </li>
       <li class="sec-card">
-        <span class="sec-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></g></svg></span>
+        
         <h3>Protected passwords</h3>
         <p>Passwords are hashed and never stored as plain text, so a leak does not expose your users.</p>
       </li>
       <li class="sec-card">
-        <span class="sec-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12l2 2l4-4"/></g></svg></span>
+        
         <h3>Attack-proof forms</h3>
         <p>Every form and input is checked to block SQL injection, cross site scripting and forged requests.</p>
       </li>
       <li class="sec-card">
-        <span class="sec-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4M14 13.12c0 2.38 0 6.38-1 8.88m4.29-.98c.12-.6.43-2.3.5-3.02M2 12a10 10 0 0 1 18-6M2 16h.01m19.79 0c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2m2.31 12c.21-.66.45-1.32.57-2M9 6.8a6 6 0 0 1 9 5.2v2"/></g></svg></span>
+        
         <h3>Login defence</h3>
         <p>Rate limits and lockouts stop brute force attacks, with two-step login where it matters.</p>
       </li>
       <li class="sec-card">
-        <span class="sec-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M16 3.128a4 4 0 0 1 0 7.744M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></g></svg></span>
+        
         <h3>Right access, right people</h3>
         <p>Role based permissions mean staff only see and change what their job needs.</p>
       </li>
       <li class="sec-card">
-        <span class="sec-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 12a9 3 0 0 0 5 2.69M21 9.3V5"/><path d="M3 5v14a9 3 0 0 0 6.47 2.88M12 12v4h4"/><path d="M13 20a5 5 0 0 0 9-3a4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L12 16"/></g></svg></span>
+        
         <h3>Backups and monitoring</h3>
         <p>Regular backups and uptime checks, so problems are caught early and data can be restored.</p>
       </li>
@@ -534,7 +550,6 @@
 <section class="process" id="process" data-name="Process">
   <div class="container">
     <div class="section-head split">
-      <span class="eyebrow"><span class="dot"></span>How we work together</span>
       <h2 class="section-title"><span class="reveal-line"><span>Simple, clear</span></span><span class="reveal-line"><span>four steps.</span></span></h2>
     </div>
     <div class="process-list">
@@ -581,7 +596,6 @@
 <section class="reviews" id="reviews" data-name="Reviews">
   <div class="container">
     <div class="section-head split">
-      <span class="eyebrow"><span class="dot"></span>Reviews</span>
       <h2 class="section-title"><span class="reveal-line"><span>Let the work</span></span><span class="reveal-line"><span>do the talking.</span></span></h2>
     </div>
     <div class="reviews-layout">
@@ -663,7 +677,6 @@
 
 <section class="contact cta" id="cta" data-name="Contact">
   <div class="container">
-    <span class="eyebrow"><span class="dot"></span>Have a project in mind?</span>
     <h2 class="contact-title">
       <span class="reveal-line"><span>Let's work</span></span>
       <span class="reveal-line"><span class="outline">together</span></span>
@@ -691,9 +704,9 @@
   </div>
 </footer>
 
-<script src="assets/js/gsap.min.js?v=30"></script>
-<script src="assets/js/ScrollTrigger.min.js?v=30"></script>
-<script src="assets/js/lenis.min.js?v=30"></script>
-<script src="assets/js/main.js?v=30"></script>
+<script src="assets/js/gsap.min.js?v=31"></script>
+<script src="assets/js/ScrollTrigger.min.js?v=31"></script>
+<script src="assets/js/lenis.min.js?v=31"></script>
+<script src="assets/js/main.js?v=31"></script>
 </body>
 </html>
