@@ -19,6 +19,7 @@
 - [Home](https://alphred-ob.github.io/portfolio/): overview, services, work and reviews
 - [About](https://alphred-ob.github.io/portfolio/about.html): journey, tools and how he works
 - [Work](https://alphred-ob.github.io/portfolio/work.html): selected projects
+- [Erudite Academy case study](https://alphred-ob.github.io/portfolio/erudite-academy.html): a private learning platform with automatic certificates, built for Erudite Africa Network
 - [Notes](https://alphred-ob.github.io/portfolio/notes.html): articles on building secure, fast software
 - [Contact](https://alphred-ob.github.io/portfolio/contact.html): email, WhatsApp and FAQ
 
