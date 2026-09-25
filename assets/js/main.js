@@ -245,7 +245,7 @@ function initPageLinks() {
     if (!href || href.startsWith('#') || link.target === '_blank' || /^[a-z]+:/i.test(href)) return;
     link.addEventListener('click', e => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const url = new URL(href, window.location.href);
+      const url = new URL(link.href);
       e.preventDefault();
       if (url.pathname === window.location.pathname) {
         closeMenu();
@@ -524,6 +524,21 @@ function initPractices() {
       once: true,
       onEnter: () => gsap.to(obj, { v: to, duration: 1.6, ease: 'power3.out', onUpdate: () => { el.textContent = obj.v.toFixed(1); } })
     });
+  });
+}
+
+// 404: the digits drop in, then drift gently with the mouse
+function initNotFound() {
+  const code = $('.nf-code');
+  if (!code) return;
+  const digits = $$('span', code);
+  gsap.from(digits, { yPercent: 60, opacity: 0, rotate: i => (i - 1) * 8, duration: 1.4, stagger: 0.1, ease: 'expo.out', delay: introDelay(code) + 0.1 });
+  gsap.from('.nf-body > *', { y: 30, opacity: 0, duration: 1.1, stagger: 0.1, ease: 'expo.out', delay: introDelay(code) + 0.4 });
+  if (!finePointer) return;
+  const movers = digits.map((d, i) => ({ x: gsap.quickTo(d, 'x', { duration: 0.8, ease: 'power3.out' }), y: gsap.quickTo(d, 'y', { duration: 0.8, ease: 'power3.out' }), f: (i - 1 || 0.6) * 18 }));
+  window.addEventListener('mousemove', e => {
+    const dx = e.clientX / innerWidth - 0.5, dy = e.clientY / innerHeight - 0.5;
+    movers.forEach(m => { m.x(dx * m.f); m.y(dy * Math.abs(m.f)); });
   });
 }
 
@@ -957,6 +972,7 @@ function init() {
     safe(initProcess);
     safe(initMarquee);
   }
+  safe(initNotFound);
   safe(initPractices);
   safe(initSecurity);
   safe(initRails);
